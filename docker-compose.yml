@@ -1,0 +1,6 @@
+﻿services:
+  codegardenapi:
+    image: codegardenapi
+    build:
+      context: .
+      dockerfile: CodeGardenApi/Dockerfile
