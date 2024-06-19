@@ -33,6 +33,13 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
     }
 
     [Authorize]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetComments()
+    {
+        return await context.Comments.ToListAsync();
+    }
+
+    [Authorize]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Models.Comment>> GetComment(int id)
     {
@@ -47,17 +54,29 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("post/{postId:int}")]
-    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetCommentsForPost(int postId)
+    [HttpGet("{id:int}/post")]
+    public async Task<ActionResult<Models.Post>> GetPostForComment(int id)
     {
-        return await context.Comments.Where(c => c.PostId == postId).ToListAsync();
+        var comment = await context.Comments.Include(c => c.Post).FirstOrDefaultAsync(c => c.Id == id);
+        if (comment?.Post == null)
+        {
+            return NotFound();
+        }
+
+        return comment.Post;
     }
-    
+
     [Authorize]
-    [HttpGet("user/{userId:int}")]
-    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetCommentsForUser(int userId)
+    [HttpGet("{id:int}/user")]
+    public async Task<ActionResult<Models.User>> GetCommentsForUser(int id)
     {
-        return await context.Comments.Where(c => c.UserId == userId).ToListAsync();
+        var comment = await context.Comments.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == id);
+        if (comment?.User == null)
+        {
+            return NotFound();
+        }
+
+        return comment.User;
     }
 
     [Authorize]
@@ -103,8 +122,7 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
 
         return NoContent();
     }
-    
-    
+
 
     private bool CommentExists(int id)
     {

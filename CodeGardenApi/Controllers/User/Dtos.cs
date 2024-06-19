@@ -19,3 +19,9 @@ public sealed record LoginModel(
     string? Email,
     [property: SwaggerSchema(Nullable = false)]
     string? Password);
+
+public sealed record ResetPasswordDto(
+    [property: SwaggerSchema(Nullable = false)]
+    string? OldPassword,
+    [property: SwaggerSchema(Nullable = false)]
+    string? NewPassword);

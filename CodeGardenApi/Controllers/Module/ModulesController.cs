@@ -21,15 +21,15 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
         ArgumentNullException.ThrowIfNull(createModuleDto.Content);
         ArgumentNullException.ThrowIfNull(createModuleDto.Introduction);
         ArgumentNullException.ThrowIfNull(createModuleDto.TotalXpPoints);
-        
+
         var doesModuleExist = await context.Modules.AnyAsync(
             m => m.Title == createModuleDto.Title, cancellationToken);
-        
-        if(doesModuleExist)
+
+        if (doesModuleExist)
         {
             return BadRequest($"Module with the title {createModuleDto.Title} already exists");
         }
-        
+
         var module = new Models.Module
         {
             Title = createModuleDto.Title,
@@ -38,7 +38,7 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
             TotalXpPoints = (decimal)createModuleDto.TotalXpPoints,
             Content = createModuleDto.Content,
         };
-        
+
         context.Modules.Add(module);
         await context.SaveChangesAsync(cancellationToken);
 
@@ -109,12 +109,16 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
 
         return NoContent();
     }
-    
+
     [Authorize]
-    [HttpGet("{moduleId:int}/sections")]
-    public async Task<ActionResult<IEnumerable<Models.Section>>> GetSectionsForModule(int moduleId, CancellationToken cancellationToken)
+    [HttpGet("{id:int}/sections")]
+    public async Task<ActionResult<IEnumerable<Models.Section>>> GetSectionsForModule(int id,
+        CancellationToken cancellationToken)
     {
-        return await context.Sections.Where(s => s.ModuleId == moduleId).ToListAsync(cancellationToken);
+        var module = await context.Modules.Include(m => m.Sections)
+            .FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
+
+        return module?.Sections?.ToList() ?? [];
     }
 
     private bool ModuleExists(int id)

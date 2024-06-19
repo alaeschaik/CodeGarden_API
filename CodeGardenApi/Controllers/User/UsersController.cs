@@ -18,6 +18,13 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         [FromBody] RegisterUserDto registerUserDto,
         CancellationToken cancellationToken)
     {
+        ArgumentNullException.ThrowIfNull(registerUserDto);
+        ArgumentNullException.ThrowIfNull(registerUserDto.Username);
+        ArgumentNullException.ThrowIfNull(registerUserDto.Email);
+        ArgumentNullException.ThrowIfNull(registerUserDto.Password);
+        ArgumentNullException.ThrowIfNull(registerUserDto.Firstname);
+        ArgumentNullException.ThrowIfNull(registerUserDto.Lastname);
+
         var doesUserExist = await context.Users.AnyAsync(
             u => u.Email == registerUserDto.Email || u.Username == registerUserDto.Username, cancellationToken);
 
@@ -28,16 +35,12 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
 
         var user = new Models.User
         {
-            Username = registerUserDto.Username ?? throw new ArgumentNullException(nameof(registerUserDto)),
-            Email = registerUserDto.Email ?? throw new ArgumentNullException(nameof(registerUserDto)),
-            Password = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password ??
-                                                      throw new ArgumentNullException(
-                                                          nameof(registerUserDto))),
-            Firstname = registerUserDto.Firstname ??
-                        throw new ArgumentNullException(nameof(registerUserDto)),
-            Lastname =
-                registerUserDto.Lastname ?? throw new ArgumentNullException(nameof(registerUserDto)),
-            CreatedAt = DateTime.Now,
+            Username = registerUserDto.Username,
+            Email = registerUserDto.Email,
+            Password = BCrypt.Net.BCrypt.HashPassword(registerUserDto.Password),
+            Firstname = registerUserDto.Firstname,
+            Lastname = registerUserDto.Lastname,
+            CreatedAt = DateTime.Now
         };
 
         context.Users.Add(user);
@@ -82,6 +85,34 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         return await context.Users.ToListAsync();
     }
 
+    [Authorize]
+    [HttpPut("{id:int}/reset-password")]
+    public async Task<IActionResult> ChangePassword(
+        int id,
+        [FromBody] ResetPasswordDto resetPasswordDto,
+        CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(resetPasswordDto);
+        ArgumentNullException.ThrowIfNull(resetPasswordDto.OldPassword);
+        ArgumentNullException.ThrowIfNull(resetPasswordDto.NewPassword);
+
+        var user = await context.Users.FindAsync([id], cancellationToken: cancellationToken);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        if (!BCrypt.Net.BCrypt.Verify(resetPasswordDto.OldPassword, user.Password))
+        {
+            return BadRequest("Old password is incorrect");
+        }
+
+        user.Password = BCrypt.Net.BCrypt.HashPassword(resetPasswordDto.NewPassword);
+        await context.SaveChangesAsync(cancellationToken);
+
+        return NoContent();
+    }
+
     private string GenerateJwtToken(Models.User user)
     {
         var claims = new[]
@@ -103,7 +134,7 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
-    
+
     [Authorize]
     [HttpGet("{id:int}/posts")]
     public async Task<ActionResult<IEnumerable<Models.Post>>> GetPosts(int id)
@@ -116,7 +147,7 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
 
         return user.Posts?.ToList() ?? [];
     }
-    
+
     [Authorize]
     [HttpGet("{id:int}/comments")]
     public async Task<ActionResult<IEnumerable<Models.Comment>>> GetComments(int id)
