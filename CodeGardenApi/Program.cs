@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using CodeGardenApi.ApplicationExtensions;
 using CodeGardenApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -84,4 +85,5 @@ app.UseSwaggerUI(c =>
 
 app.MapControllers();
 
+app.MigrateDatabase();
 app.Run();
