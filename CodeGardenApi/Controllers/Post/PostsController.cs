@@ -37,23 +37,24 @@ public class PostsController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.Post>> GetPost([FromRoute] int id)
+    public async Task<ActionResult<Models.Post>> GetPost(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var post = await context.Posts.FindAsync(id);
+        var post = await context.Posts.AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
 
-        if (post == null)
-        {
-            return NotFound();
-        }
+        if (post is null) return NotFound();
 
         return post;
     }
 
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.Post>>> GetPosts()
+    public async Task<ActionResult<IEnumerable<Models.Post>>> GetPosts(CancellationToken cancellationToken)
     {
-        return await context.Posts.ToListAsync();
+        // TODO: add pagination
+        return await context.Posts.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     [Authorize]
@@ -86,42 +87,47 @@ public class PostsController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeletePost([FromRoute] int id)
+    public async Task<IActionResult> DeletePost(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var post = await context.Posts.FindAsync(id);
-        if (post == null)
+        var post = await context.Posts.FindAsync([id], cancellationToken);
+        if (post is null)
         {
             return NotFound();
         }
 
         context.Posts.Remove(post);
-        await context.SaveChangesAsync();
+        await context.SaveChangesAsync(cancellationToken);
 
         return NoContent();
     }
 
     [Authorize]
     [HttpGet("{id:int}/comments")]
-    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetPostComments([FromRoute] int id)
+    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetPostComments(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var post = await context.Posts.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == id);
-        if (post == null)
-        {
-            return NotFound();
-        }
+        var post = await context.Posts.AsNoTracking().Include(p => p.Comments)
+            .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+
+        if (post is null) return NotFound();
 
         return post.Comments?.ToList() ?? [];
     }
 
     [Authorize]
     [HttpGet("{id:int}/user")]
-    public async Task<ActionResult<Models.User>> GetPostUser([FromRoute] int id)
+    public async Task<ActionResult<Models.User>> GetPostUser(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var post = await context.Posts.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == id);
-        if (post?.User == null)
-        {
-            return NotFound();
-        }
+        var post = await context.Posts.AsNoTracking()
+            .Include(p => p.User)
+            .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+
+        if (post?.User is null) return NotFound();
 
         return post.User;
     }

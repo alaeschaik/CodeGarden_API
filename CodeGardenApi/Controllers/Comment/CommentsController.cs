@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Controllers.Comment;
 
-[Route("api/[controller]")]
+[Route("api/comments")]
 [ApiController]
 public class CommentsController(CodeGardenContext context) : ControllerBase
 {
@@ -34,18 +34,21 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetComments()
+    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetComments(CancellationToken cancellationToken)
     {
-        return await context.Comments.ToListAsync();
+        return await context.Comments.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.Comment>> GetComment(int id)
+    public async Task<ActionResult<Models.Comment>> GetComment(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var comment = await context.Comments.FindAsync(id);
+        var comment = await context.Comments.AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
 
-        if (comment == null)
+        if (comment is null)
         {
             return NotFound();
         }
@@ -55,77 +58,67 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}/post")]
-    public async Task<ActionResult<Models.Post>> GetPostForComment(int id)
+    public async Task<ActionResult<Models.Post>> GetPostForComment(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var comment = await context.Comments.Include(c => c.Post).FirstOrDefaultAsync(c => c.Id == id);
-        if (comment?.Post == null)
-        {
-            return NotFound();
-        }
+        var comment = await context.Comments.AsNoTracking()
+            .Include(c => c.Post)
+            .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+
+        if (comment?.Post is null) return NotFound();
 
         return comment.Post;
     }
 
     [Authorize]
     [HttpGet("{id:int}/user")]
-    public async Task<ActionResult<Models.User>> GetCommentsForUser(int id)
+    public async Task<ActionResult<Models.User>> GetCommentsForUser(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var comment = await context.Comments.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == id);
-        if (comment?.User == null)
-        {
-            return NotFound();
-        }
+        var comment = await context.Comments.AsNoTracking().Include(c => c.User)
+            .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+
+        if (comment?.User is null) return NotFound();
 
         return comment.User;
     }
 
     [Authorize]
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateComment(int id, Models.Comment comment)
+    public async Task<IActionResult> UpdateComment(
+        [FromRoute] int id,
+        [FromBody] UpdateCommentDto updateCommentDto,
+        CancellationToken cancellationToken)
     {
-        if (id != comment.Id)
-        {
-            return BadRequest();
-        }
+        ArgumentNullException.ThrowIfNull(updateCommentDto);
 
-        context.Entry(comment).State = EntityState.Modified;
+        var comment = await context.Comments.FindAsync([id], cancellationToken);
 
-        try
-        {
-            await context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!CommentExists(id))
-            {
-                return NotFound();
-            }
+        if (comment is null) return NotFound();
 
-            throw;
-        }
+        comment.Content = updateCommentDto.Content ?? comment.Content;
+        await context.SaveChangesAsync(cancellationToken);
 
         return NoContent();
     }
 
     [Authorize]
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeleteComment(int id)
+    public async Task<IActionResult> DeleteComment(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var comment = await context.Comments.FindAsync(id);
-        if (comment == null)
+        var comment = await context.Comments.FindAsync([id], cancellationToken);
+        if (comment is null)
         {
             return NotFound();
         }
 
         context.Comments.Remove(comment);
-        await context.SaveChangesAsync();
+        await context.SaveChangesAsync(cancellationToken);
 
         return NoContent();
-    }
-
-
-    private bool CommentExists(int id)
-    {
-        return context.Comments.Any(e => e.Id == id);
     }
 }

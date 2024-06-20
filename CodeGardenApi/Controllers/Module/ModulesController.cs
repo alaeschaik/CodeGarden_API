@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Controllers.Module;
 
-[Route("api/[controller]")]
+[Route("api/modules")]
 [ApiController]
 public class ModulesController(CodeGardenContext context) : ControllerBase
 {
@@ -47,59 +47,59 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.Module>> GetModule(int id)
+    public async Task<ActionResult<Models.Module>> GetModule(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var module = await context.Modules.FindAsync(id);
+        var module = await context.Modules.AsNoTracking()
+            .FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
 
-        if (module == null)
-        {
-            return NotFound();
-        }
+        if (module is null) return NotFound();
 
         return module;
     }
 
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.Module>>> GetModules()
+    public async Task<ActionResult<IEnumerable<Models.Module>>> GetModules(CancellationToken cancellationToken)
     {
-        return await context.Modules.ToListAsync();
+        return await context.Modules.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     [Authorize]
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateModule(int id, Models.Module module)
+    public async Task<IActionResult> UpdateModule(
+        [FromRoute] int id,
+        [FromBody] UpdateModuleDto updateModuleDto,
+        CancellationToken cancellationToken)
     {
-        if (id != module.Id)
+        ArgumentNullException.ThrowIfNull(updateModuleDto);
+
+        var module = await context.Modules.FindAsync([id], cancellationToken);
+
+        if (module is null)
         {
-            return BadRequest();
+            return NotFound();
         }
 
-        context.Entry(module).State = EntityState.Modified;
+        module.Title = updateModuleDto.Title ?? module.Title;
+        module.Description = updateModuleDto.Description ?? module.Description;
+        module.Introduction = updateModuleDto.Introduction ?? module.Introduction;
+        module.Content = updateModuleDto.Content ?? module.Content;
+        module.TotalXpPoints = updateModuleDto.TotalXpPoints ?? module.TotalXpPoints;
 
-        try
-        {
-            await context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!ModuleExists(id))
-            {
-                return NotFound();
-            }
-
-            throw;
-        }
-
+        await context.SaveChangesAsync(cancellationToken);
         return NoContent();
     }
 
     [Authorize]
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeleteModule(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteModule(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var module = await context.Modules.FindAsync([id, cancellationToken], cancellationToken: cancellationToken);
-        if (module == null)
+        var module = await context.Modules.FindAsync([id, cancellationToken], cancellationToken);
+        if (module is null)
         {
             return NotFound();
         }
@@ -112,17 +112,14 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}/sections")]
-    public async Task<ActionResult<IEnumerable<Models.Section>>> GetSectionsForModule(int id,
+    public async Task<ActionResult<IEnumerable<Models.Section>>> GetSectionsForModule(
+        [FromRoute] int id,
         CancellationToken cancellationToken)
     {
-        var module = await context.Modules.Include(m => m.Sections)
+        var module = await context.Modules.AsNoTracking()
+            .Include(m => m.Sections)
             .FirstOrDefaultAsync(m => m.Id == id, cancellationToken);
 
         return module?.Sections?.ToList() ?? [];
-    }
-
-    private bool ModuleExists(int id)
-    {
-        return context.Modules.Any(e => e.Id == id);
     }
 }

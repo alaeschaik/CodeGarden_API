@@ -9,3 +9,11 @@ public sealed record CreateSectionDto(
     string? Title,
     [property: SwaggerSchema(Nullable = false)]
     decimal? XpPoints);
+
+public sealed record UpdateSectionDto(
+    [property: SwaggerSchema(Nullable = true)]
+    string? Title,
+    [property: SwaggerSchema(Nullable = true)]
+    int? ModuleId,
+    [property: SwaggerSchema(Nullable = true)]
+    decimal? XpPoints);

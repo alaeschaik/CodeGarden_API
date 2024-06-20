@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CodeGardenApi.Controllers.User;
 
-[Route("api/[controller]")]
+[Route("api/users")]
 [ApiController]
 public class UsersController(CodeGardenContext context, IConfiguration configuration) : ControllerBase
 {
@@ -54,8 +54,13 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         [FromBody] LoginModel login,
         CancellationToken cancellationToken)
     {
-        var user = await context.Users.SingleOrDefaultAsync(u => u.Email == login.Email, cancellationToken);
-        if (user == null || !BCrypt.Net.BCrypt.Verify(login.Password, user.Password))
+        ArgumentNullException.ThrowIfNull(login);
+
+        var isEmail = login.UsernameOrEmail!.Contains('@');
+
+        var user = await context.Users.SingleOrDefaultAsync(
+            u => isEmail ? u.Email == login.UsernameOrEmail : u.Username == login.UsernameOrEmail, cancellationToken);
+        if (user is null || !BCrypt.Net.BCrypt.Verify(login.Password, user.Password))
         {
             return Unauthorized();
         }
@@ -67,10 +72,14 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.User>> GetUser(int id)
+    public async Task<ActionResult<Models.User>> GetUser(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var user = await context.Users.FindAsync(id);
-        if (user == null)
+        var user = await context.Users.AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+
+        if (user is null)
         {
             return NotFound();
         }
@@ -80,15 +89,16 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
 
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.User>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<Models.User>>> GetUsers(CancellationToken cancellationToken)
     {
-        return await context.Users.ToListAsync();
+        // TODO: Add pagination
+        return await context.Users.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     [Authorize]
     [HttpPut("{id:int}/reset-password")]
     public async Task<IActionResult> ChangePassword(
-        int id,
+        [FromRoute] int id,
         [FromBody] ResetPasswordDto resetPasswordDto,
         CancellationToken cancellationToken)
     {
@@ -97,7 +107,7 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         ArgumentNullException.ThrowIfNull(resetPasswordDto.NewPassword);
 
         var user = await context.Users.FindAsync([id], cancellationToken: cancellationToken);
-        if (user == null)
+        if (user is null)
         {
             return NotFound();
         }
@@ -108,6 +118,31 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         }
 
         user.Password = BCrypt.Net.BCrypt.HashPassword(resetPasswordDto.NewPassword);
+        await context.SaveChangesAsync(cancellationToken);
+
+        return NoContent();
+    }
+
+    [Authorize]
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdateUser(
+        [FromRoute] int id,
+        [FromBody] UpdateUserDto updateUserDto,
+        CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(updateUserDto);
+
+        var user = await context.Users.FindAsync([id], cancellationToken);
+        if (user is null)
+        {
+            return NotFound();
+        }
+
+        user.Username = updateUserDto.Username ?? user.Username;
+        user.Email = updateUserDto.Email ?? user.Email;
+        user.Firstname = updateUserDto.Firstname ?? user.Firstname;
+        user.Lastname = updateUserDto.Lastname ?? user.Lastname;
+
         await context.SaveChangesAsync(cancellationToken);
 
         return NoContent();
@@ -137,26 +172,30 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
 
     [Authorize]
     [HttpGet("{id:int}/posts")]
-    public async Task<ActionResult<IEnumerable<Models.Post>>> GetPosts(int id)
+    public async Task<ActionResult<IEnumerable<Models.Post>>> GetPosts(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var user = await context.Users.Include(u => u.Posts).FirstOrDefaultAsync(u => u.Id == id);
-        if (user == null)
-        {
-            return NotFound();
-        }
+        var user = await context.Users.AsNoTracking()
+            .Include(u => u.Posts)
+            .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+
+        if (user is null) return NotFound();
 
         return user.Posts?.ToList() ?? [];
     }
 
     [Authorize]
     [HttpGet("{id:int}/comments")]
-    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetComments(int id)
+    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetComments(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var user = await context.Users.Include(u => u.Comments).FirstOrDefaultAsync(u => u.Id == id);
-        if (user == null)
-        {
-            return NotFound();
-        }
+        var user = await context.Users.AsNoTracking()
+            .Include(u => u.Comments)
+            .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+
+        if (user is null) return NotFound();
 
         return user.Comments?.ToList() ?? [];
     }

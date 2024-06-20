@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Controllers.Section;
 
-[Route("api/[Controller]")]
+[Route("api/sections")]
 [ApiController]
 public class SectionsController(CodeGardenContext context) : ControllerBase
 {
@@ -19,117 +19,112 @@ public class SectionsController(CodeGardenContext context) : ControllerBase
         ArgumentNullException.ThrowIfNull(createSectionDto.Title);
         ArgumentNullException.ThrowIfNull(createSectionDto.ModuleId);
         ArgumentNullException.ThrowIfNull(createSectionDto.XpPoints);
-        
+
         var doesSectionExist = await context.Sections.AnyAsync(
             s => s.Title == createSectionDto.Title, cancellationToken);
-        
-        if(doesSectionExist)
+
+        if (doesSectionExist)
         {
             return BadRequest($"Section with the title {createSectionDto.Title} already exists");
         }
-        
+
         var section = new Models.Section
         {
             Title = createSectionDto.Title,
             ModuleId = (int)createSectionDto.ModuleId,
             XpPoints = (decimal)createSectionDto.XpPoints,
         };
-        
+
         context.Sections.Add(section);
         await context.SaveChangesAsync(cancellationToken);
 
         return CreatedAtAction(nameof(GetSection), new { id = section.Id }, section);
     }
-    
-    
+
+
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.Section>>> GetSections()
+    public async Task<ActionResult<IEnumerable<Models.Section>>> GetSections(CancellationToken cancellationToken)
     {
-        return await context.Sections.ToListAsync();
+        // TODO: add pagination
+        return await context.Sections.AsNoTracking().ToListAsync(cancellationToken);
     }
-    
+
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.Section>> GetSection(int id)
+    public async Task<ActionResult<Models.Section>> GetSection(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var section = await context.Sections.FindAsync(id);
+        var section = await context.Sections.AsNoTracking()
+            .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
 
-        if (section == null)
-        {
-            return NotFound();
-        }
+        if (section is null) return NotFound();
 
         return section;
     }
-    
+
     [Authorize]
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateSection(int id, Models.Section section)
+    public async Task<IActionResult> UpdateSection(
+        [FromRoute] int id,
+        [FromBody] UpdateSectionDto updateSectionDto,
+        CancellationToken cancellationToken)
     {
-        if (id != section.Id)
-        {
-            return BadRequest();
-        }
-        
-        context.Entry(section).State = EntityState.Modified;
-        try
-        {
-            await context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!SectionExists(id))
-            {
-                return NotFound();
-            }
+        ArgumentNullException.ThrowIfNull(updateSectionDto);
 
-            throw;
-        }
+        var section = await context.Sections.FindAsync([id], cancellationToken);
+
+        if (section is null) return NotFound();
+
+        section.Title = updateSectionDto.Title ?? section.Title;
+        section.ModuleId = updateSectionDto.ModuleId ?? section.ModuleId;
+        section.XpPoints = updateSectionDto.XpPoints ?? section.XpPoints;
+
+        await context.SaveChangesAsync(cancellationToken);
 
         return NoContent();
     }
-    
+
     [Authorize]
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeleteSection(int id)
+    public async Task<IActionResult> DeleteSection(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var section = await context.Sections.FindAsync(id);
-        if (section == null)
-        {
-            return NotFound();
-        }
+        var section = await context.Sections.FindAsync([id], cancellationToken);
+        if (section is null) return NotFound();
 
         context.Sections.Remove(section);
-        await context.SaveChangesAsync();
+        await context.SaveChangesAsync(cancellationToken);
 
         return NoContent();
     }
-    
+
     [Authorize]
     [HttpGet("{id:int}/module")]
-    public async Task<ActionResult<Models.Module>> GetSectionsForModule(int id)
+    public async Task<ActionResult<Models.Module>> GetSectionsForModule(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var module =  await context.Sections.Include(s => s.Module)
-            .Where(s => s.Id == id).FirstOrDefaultAsync();
+        var module = await context.Sections.AsNoTracking()
+            .Include(s => s.Module)
+            .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
 
-        if (module?.Module is null)
-        {
-            return NotFound();
-        }
+        if (module?.Module is null) return NotFound();
 
         return module.Module;
     }
-    
+
     [Authorize]
     [HttpGet("{id:int}/challenges")]
-    public async Task<ActionResult<IEnumerable<Models.Section>>> GetChallenges(int id)
+    public async Task<ActionResult<IEnumerable<Models.Section>>> GetChallenges(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        return await context.Sections.Include(s => s.Challenges).Where(s => s.Id == id).ToListAsync();
-    }
-
-    private bool SectionExists(int id)
-    {
-        return context.Sections.Any(e => e.Id == id);
+        return await context.Sections.AsNoTracking()
+            .Include(s => s.Challenges)
+            .Where(s => s.Id == id)
+            .ToListAsync(cancellationToken);
     }
 }

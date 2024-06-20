@@ -16,7 +16,7 @@ public sealed record RegisterUserDto(
 
 public sealed record LoginModel(
     [property: SwaggerSchema(Nullable = false)]
-    string? Email,
+    string? UsernameOrEmail,
     [property: SwaggerSchema(Nullable = false)]
     string? Password);
 
@@ -25,3 +25,13 @@ public sealed record ResetPasswordDto(
     string? OldPassword,
     [property: SwaggerSchema(Nullable = false)]
     string? NewPassword);
+
+public sealed record UpdateUserDto(
+    [property: SwaggerSchema(Nullable = true)]
+    string? Username,
+    [property: SwaggerSchema(Nullable = true)]
+    string? Email,
+    [property: SwaggerSchema(Nullable = true)]
+    string? Firstname,
+    [property: SwaggerSchema(Nullable = true)]
+    string? Lastname);

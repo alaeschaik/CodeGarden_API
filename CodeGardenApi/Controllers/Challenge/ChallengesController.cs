@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Controllers.Challenge;
 
-[Route("api/[controller]")]
+[Route("api/challenges")]
 [ApiController]
 public class ChallengesController(CodeGardenContext context) : ControllerBase
 {
@@ -34,11 +34,14 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.Challenge>> GetChallenge(int id)
+    public async Task<ActionResult<Models.Challenge>> GetChallenge(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var challenge = await context.Challenges.FindAsync(id);
+        var challenge = await context.Challenges.AsNoTracking()
+            .FirstOrDefaultAsync(ch => ch.Id == id, cancellationToken);
 
-        if (challenge == null)
+        if (challenge is null)
         {
             return NotFound();
         }
@@ -48,15 +51,15 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.Challenge>>> GetChallenges()
+    public async Task<ActionResult<IEnumerable<Models.Challenge>>> GetChallenges(CancellationToken cancellationToken)
     {
-        return await context.Challenges.ToListAsync();
+        return await context.Challenges.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     [Authorize]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> UpdateChallenge(
-        int id,
+        [FromRoute] int id,
         [FromBody] UpdateChallengeDto updateChallengeDto,
         CancellationToken cancellationToken)
     {
@@ -65,7 +68,7 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
         var challenge =
             await context.Challenges.FindAsync([id], cancellationToken);
 
-        if (challenge == null) return NotFound();
+        if (challenge is null) return NotFound();
 
         challenge.Content = updateChallengeDto.Content ?? challenge.Content;
         challenge.SectionId = updateChallengeDto.SectionId ?? challenge.SectionId;
@@ -80,11 +83,13 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeleteChallenge(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteChallenge(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
         var challenge = await context.Challenges.FindAsync([id], cancellationToken);
 
-        if (challenge == null) return NotFound();
+        if (challenge is null) return NotFound();
 
         context.Challenges.Remove(challenge);
         await context.SaveChangesAsync(cancellationToken);
@@ -94,10 +99,12 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}/section")]
-    public async Task<ActionResult<Models.Section>> GetChallengesForSection(int id,
+    public async Task<ActionResult<Models.Section>> GetChallengesForSection(
+        [FromRoute] int id,
         CancellationToken cancellationToken)
     {
-        var challenge = await context.Challenges.Include(ch => ch.Section)
+        var challenge = await context.Challenges.AsNoTracking()
+            .Include(ch => ch.Section)
             .FirstOrDefaultAsync(ch => ch.Id == id, cancellationToken);
 
         if (challenge?.Section is null) return NotFound();
