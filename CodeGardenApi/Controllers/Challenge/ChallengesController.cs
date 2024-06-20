@@ -34,9 +34,11 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.Challenge>> GetChallenge([FromRoute] int id)
+    public async Task<ActionResult<Models.Challenge>> GetChallenge(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        var challenge = await context.Challenges.FindAsync(id);
+        var challenge = await context.Challenges.FindAsync([id], cancellationToken);
 
         if (challenge == null)
         {
@@ -48,9 +50,9 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.Challenge>>> GetChallenges()
+    public async Task<ActionResult<IEnumerable<Models.Challenge>>> GetChallenges(CancellationToken cancellationToken)
     {
-        return await context.Challenges.ToListAsync();
+        return await context.Challenges.ToListAsync(cancellationToken);
     }
 
     [Authorize]
