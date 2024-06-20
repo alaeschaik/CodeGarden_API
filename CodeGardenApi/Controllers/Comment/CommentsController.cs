@@ -36,7 +36,7 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Models.Comment>>> GetComments(CancellationToken cancellationToken)
     {
-        return await context.Comments.ToListAsync(cancellationToken);
+        return await context.Comments.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     [Authorize]
@@ -45,9 +45,10 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
         [FromRoute] int id,
         CancellationToken cancellationToken)
     {
-        var comment = await context.Comments.FindAsync([id], cancellationToken);
+        var comment = await context.Comments.AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
 
-        if (comment == null)
+        if (comment is null)
         {
             return NotFound();
         }
@@ -61,11 +62,11 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
         [FromRoute] int id,
         CancellationToken cancellationToken)
     {
-        var comment = await context.Comments.Include(c => c.Post).FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
-        if (comment?.Post == null)
-        {
-            return NotFound();
-        }
+        var comment = await context.Comments.AsNoTracking()
+            .Include(c => c.Post)
+            .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+
+        if (comment?.Post is null) return NotFound();
 
         return comment.Post;
     }
@@ -76,11 +77,10 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
         [FromRoute] int id,
         CancellationToken cancellationToken)
     {
-        var comment = await context.Comments.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
-        if (comment?.User == null)
-        {
-            return NotFound();
-        }
+        var comment = await context.Comments.AsNoTracking().Include(c => c.User)
+            .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+
+        if (comment?.User is null) return NotFound();
 
         return comment.User;
     }
@@ -111,7 +111,7 @@ public class CommentsController(CodeGardenContext context) : ControllerBase
         CancellationToken cancellationToken)
     {
         var comment = await context.Comments.FindAsync([id], cancellationToken);
-        if (comment == null)
+        if (comment is null)
         {
             return NotFound();
         }
