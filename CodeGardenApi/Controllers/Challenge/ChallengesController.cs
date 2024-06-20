@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Controllers.Challenge;
 
-[Route("api/[controller]")]
+[Route("api/challenges")]
 [ApiController]
 public class ChallengesController(CodeGardenContext context) : ControllerBase
 {
@@ -34,7 +34,7 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.Challenge>> GetChallenge(int id)
+    public async Task<ActionResult<Models.Challenge>> GetChallenge([FromRoute] int id)
     {
         var challenge = await context.Challenges.FindAsync(id);
 
@@ -56,7 +56,7 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
     [Authorize]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> UpdateChallenge(
-        int id,
+        [FromRoute] int id,
         [FromBody] UpdateChallengeDto updateChallengeDto,
         CancellationToken cancellationToken)
     {
@@ -80,7 +80,9 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeleteChallenge(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteChallenge(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
     {
         var challenge = await context.Challenges.FindAsync([id], cancellationToken);
 
@@ -94,7 +96,8 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}/section")]
-    public async Task<ActionResult<Models.Section>> GetChallengesForSection(int id,
+    public async Task<ActionResult<Models.Section>> GetChallengesForSection(
+        [FromRoute] int id,
         CancellationToken cancellationToken)
     {
         var challenge = await context.Challenges.Include(ch => ch.Section)
