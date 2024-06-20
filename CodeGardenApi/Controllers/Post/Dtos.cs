@@ -9,3 +9,14 @@ public sealed record CreatePostDto(
     string? Title,
     [property: SwaggerSchema(Nullable = false)]
     string? Content);
+    
+    public sealed record UpdatePostDto(
+    [property: SwaggerSchema(Nullable = true)]
+    string? Title,
+    [property: SwaggerSchema(Nullable = true)]
+    string? Content,
+    [property: SwaggerSchema(Nullable = true)]
+    int? Upvotes,
+    [property: SwaggerSchema(Nullable = true)]
+    int? Downvotes);
+    

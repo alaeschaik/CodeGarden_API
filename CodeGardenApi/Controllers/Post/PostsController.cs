@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Controllers.Post;
 
-[Route("api/[controller]")]
+[Route("api/posts")]
 [ApiController]
 public class PostsController(CodeGardenContext context) : ControllerBase
 {
@@ -37,7 +37,7 @@ public class PostsController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Models.Post>> GetPost(int id)
+    public async Task<ActionResult<Models.Post>> GetPost([FromRoute] int id)
     {
         var post = await context.Posts.FindAsync(id);
 
@@ -58,35 +58,35 @@ public class PostsController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdatePost(int id, Models.Post post)
+    public async Task<IActionResult> UpdatePost(
+        [FromRoute] int id,
+        [FromBody] UpdatePostDto updatePostDto,
+        CancellationToken cancellationToken)
     {
-        if (id != post.Id)
+        ArgumentNullException.ThrowIfNull(updatePostDto);
+        //TODO: use fluent validation
+
+        var post = await context.Posts.FindAsync([id], cancellationToken);
+
+        if (post is null)
         {
-            return BadRequest();
+            return NotFound();
         }
 
-        context.Entry(post).State = EntityState.Modified;
+        post.Title = updatePostDto.Title ?? post.Title;
+        post.Content = updatePostDto.Content ?? post.Content;
+        post.Upvotes = updatePostDto.Upvotes ?? post.Upvotes;
+        post.Downvotes = updatePostDto.Downvotes ?? post.Downvotes;
 
-        try
-        {
-            await context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!PostExists(id))
-            {
-                return NotFound();
-            }
+        await context.SaveChangesAsync(cancellationToken);
 
-            throw;
-        }
 
         return NoContent();
     }
 
     [Authorize]
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> DeletePost(int id)
+    public async Task<IActionResult> DeletePost([FromRoute] int id)
     {
         var post = await context.Posts.FindAsync(id);
         if (post == null)
@@ -102,7 +102,7 @@ public class PostsController(CodeGardenContext context) : ControllerBase
 
     [Authorize]
     [HttpGet("{id:int}/comments")]
-    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetPostComments(int id)
+    public async Task<ActionResult<IEnumerable<Models.Comment>>> GetPostComments([FromRoute] int id)
     {
         var post = await context.Posts.Include(p => p.Comments).FirstOrDefaultAsync(p => p.Id == id);
         if (post == null)
@@ -112,10 +112,10 @@ public class PostsController(CodeGardenContext context) : ControllerBase
 
         return post.Comments?.ToList() ?? [];
     }
-    
+
     [Authorize]
     [HttpGet("{id:int}/user")]
-    public async Task<ActionResult<Models.User>> GetPostUser(int id)
+    public async Task<ActionResult<Models.User>> GetPostUser([FromRoute] int id)
     {
         var post = await context.Posts.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == id);
         if (post?.User == null)
@@ -124,10 +124,5 @@ public class PostsController(CodeGardenContext context) : ControllerBase
         }
 
         return post.User;
-    }
-
-    private bool PostExists(int id)
-    {
-        return context.Posts.Any(e => e.Id == id);
     }
 }
