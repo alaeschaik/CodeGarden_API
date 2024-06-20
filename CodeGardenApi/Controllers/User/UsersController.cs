@@ -130,12 +130,12 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         [FromBody] UpdateUserDto updateUserDto,
         CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(updateUserDto);
-
         var user = await context.Users.FindAsync([id], cancellationToken);
-        if (user is null)
+        if (user is null ||
+            await context.Users.AnyAsync(u => u.Username == updateUserDto.Username || u.Email == updateUserDto.Email,
+                cancellationToken))
         {
-            return NotFound();
+            return BadRequest("Username or Email is already taken");
         }
 
         user.Username = updateUserDto.Username ?? user.Username;
