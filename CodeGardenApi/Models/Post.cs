@@ -21,6 +21,12 @@ public class Post
     [Required]
     [Column(TypeName = "varchar(max)")]
     public required string Content { get; set; }
+    
+    [Required]
+    public int Upvotes { get; set; } = 0;
+    
+    [Required]
+    public int Downvotes { get; set; } = 0;
 
     [Required] public DateTime CreatedAt { get; init; } = DateTime.Now;
 
