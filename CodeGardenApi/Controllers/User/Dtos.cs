@@ -20,6 +20,14 @@ public sealed record LoginModel(
     [property: SwaggerSchema(Nullable = false)]
     string? Password);
 
+public sealed record LoginResponse(
+    [property: SwaggerSchema(Nullable = false)]
+    int? Id,
+    [property: SwaggerSchema(Nullable = false)]
+    string? Token,
+    [property: SwaggerSchema(Nullable = false)]
+    string? Username);
+
 public sealed record ResetPasswordDto(
     [property: SwaggerSchema(Nullable = false)]
     string? OldPassword,
