@@ -50,7 +50,7 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(
+    public async Task<ActionResult<LoginResponse>> Login(
         [FromBody] LoginModel login,
         CancellationToken cancellationToken)
     {
@@ -65,9 +65,14 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
             return Unauthorized();
         }
 
-        var token = GenerateJwtToken(user);
+        var response = new LoginResponse
+        (
+            Id: user.Id,
+            Token: GenerateJwtToken(user),
+            Username: user.Username
+        );
 
-        return Ok(new { token });
+        return Ok(response);
     }
 
     [Authorize]
