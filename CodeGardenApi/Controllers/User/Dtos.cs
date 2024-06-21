@@ -32,6 +32,8 @@ public sealed record LoginResponse(
 
 public sealed record ResetPasswordDto(
     [property: SwaggerSchema(Nullable = false)]
+    string? UsernameOrEmail,
+    [property: SwaggerSchema(Nullable = false)]
     string? OldPassword,
     [property: SwaggerSchema(Nullable = false)]
     string? NewPassword);
