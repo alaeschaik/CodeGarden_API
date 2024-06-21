@@ -65,10 +65,12 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
             return Unauthorized();
         }
 
+        var jwtToken = GenerateJwtToken(user);
         var response = new LoginResponse
         (
             Id: user.Id,
-            Token: GenerateJwtToken(user),
+            Token: jwtToken.Token,
+            ExpiresAt: jwtToken.Expiration,
             Username: user.Username
         );
 
@@ -153,28 +155,6 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         return NoContent();
     }
 
-    private string GenerateJwtToken(Models.User user)
-    {
-        var claims = new[]
-        {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
-
-        var key = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(configuration["Jwt:Key"] ?? throw new InvalidOperationException()));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-        var token = new JwtSecurityToken(
-            issuer: configuration["Jwt:Issuer"],
-            audience: configuration["Jwt:Issuer"],
-            claims: claims,
-            expires: DateTime.Now.AddDays(1),
-            signingCredentials: creds);
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
-    }
-
     [Authorize]
     [HttpGet("{id:int}/posts")]
     public async Task<ActionResult<IEnumerable<Models.Post>>> GetPosts(
@@ -203,5 +183,28 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         if (user is null) return NotFound();
 
         return user.Comments?.ToList() ?? [];
+    }
+
+    private TokenResponse GenerateJwtToken(Models.User user)
+    {
+        var claims = new[]
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
+
+        var key = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(configuration["Jwt:Key"] ?? throw new InvalidOperationException()));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            issuer: configuration["Jwt:Issuer"],
+            audience: configuration["Jwt:Issuer"],
+            claims: claims,
+            expires: DateTime.Now.AddDays(1),
+            signingCredentials: creds);
+
+        var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
+        return new TokenResponse(jwtToken, token.ValidTo.ToString("yyyy-MM-dd-HH:mm:ss"));
     }
 }

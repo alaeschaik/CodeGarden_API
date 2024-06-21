@@ -26,6 +26,8 @@ public sealed record LoginResponse(
     [property: SwaggerSchema(Nullable = false)]
     string? Token,
     [property: SwaggerSchema(Nullable = false)]
+    string ExpiresAt,
+    [property: SwaggerSchema(Nullable = false)]
     string? Username);
 
 public sealed record ResetPasswordDto(
@@ -43,3 +45,7 @@ public sealed record UpdateUserDto(
     string? Firstname,
     [property: SwaggerSchema(Nullable = true)]
     string? Lastname);
+
+public sealed record TokenResponse(
+    string Token,
+    string Expiration);
