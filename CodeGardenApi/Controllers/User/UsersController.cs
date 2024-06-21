@@ -102,18 +102,23 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         return await context.Users.AsNoTracking().ToListAsync(cancellationToken);
     }
 
-    [Authorize]
-    [HttpPut("{id:int}/reset-password")]
+    [HttpPost("reset-password")]
     public async Task<IActionResult> ChangePassword(
-        [FromRoute] int id,
         [FromBody] ResetPasswordDto resetPasswordDto,
         CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(resetPasswordDto);
+        ArgumentNullException.ThrowIfNull(resetPasswordDto.UsernameOrEmail);
         ArgumentNullException.ThrowIfNull(resetPasswordDto.OldPassword);
         ArgumentNullException.ThrowIfNull(resetPasswordDto.NewPassword);
 
-        var user = await context.Users.FindAsync([id], cancellationToken: cancellationToken);
+        var isEmail = resetPasswordDto.UsernameOrEmail!.Contains('@');
+        var user = await context.Users.SingleOrDefaultAsync(
+            u => isEmail
+                ? u.Email == resetPasswordDto.UsernameOrEmail
+                : u.Username == resetPasswordDto.UsernameOrEmail,
+            cancellationToken);
+
         if (user is null)
         {
             return NotFound();
