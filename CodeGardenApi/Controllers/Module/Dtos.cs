@@ -1,6 +1,5 @@
-﻿using Swashbuckle.AspNetCore.Annotations;
-
-namespace CodeGardenApi.Controllers.Module;
+﻿using CodeGardenApi.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 public sealed record CreateModuleDto(
     [property: SwaggerSchema(Nullable = false)]
@@ -12,7 +11,9 @@ public sealed record CreateModuleDto(
     [property: SwaggerSchema(Nullable = false)]
     string? Content,
     [property: SwaggerSchema(Nullable = false)]
-    decimal? TotalXpPoints);
+    decimal? TotalXpPoints,
+    [property: SwaggerSchema(Nullable = false)]
+    ModuleState? State);
 
 public sealed record UpdateModuleDto(
     [property: SwaggerSchema(Nullable = true)]

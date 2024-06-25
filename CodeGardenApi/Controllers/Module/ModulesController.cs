@@ -1,4 +1,5 @@
 ﻿using CodeGardenApi.Data;
+using CodeGardenApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,7 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
         ArgumentNullException.ThrowIfNull(createModuleDto.Content);
         ArgumentNullException.ThrowIfNull(createModuleDto.Introduction);
         ArgumentNullException.ThrowIfNull(createModuleDto.TotalXpPoints);
+        ArgumentNullException.ThrowIfNull(createModuleDto.State);
 
         var doesModuleExist = await context.Modules.AnyAsync(
             m => m.Title == createModuleDto.Title, cancellationToken);
@@ -37,6 +39,7 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
             Introduction = createModuleDto.Introduction,
             TotalXpPoints = (decimal)createModuleDto.TotalXpPoints,
             Content = createModuleDto.Content,
+            State = createModuleDto.State ?? ModuleState.Start
         };
 
         context.Modules.Add(module);

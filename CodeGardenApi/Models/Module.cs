@@ -6,6 +6,12 @@ namespace CodeGardenApi.Models;
 
 using System.ComponentModel.DataAnnotations;
 
+public enum ModuleState
+{
+    Start,
+    Continue
+}
+
 [Index(nameof(Title), IsUnique = true)]
 public class Module
 {
@@ -31,6 +37,9 @@ public class Module
     [Required]
     [Column(TypeName = "varchar(max)")]
     public required string Content { get; set; }
+    
+    [Column(TypeName = "varchar(100)")]
+    public ModuleState State { get; set; } = ModuleState.Start;
     
     [JsonIgnore]
     public ICollection<Section>? Sections { get; set; }
