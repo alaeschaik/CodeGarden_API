@@ -7,12 +7,12 @@ public static class DbInitializer
     public static void Initialize(CodeGardenContext context)
     {
         context.Database.EnsureCreated();
-
-        // Check if data already exists
-        if (context.Modules.Any())
-        {
-            return; // DB has been seeded
-        }
+  
+        // // Check if data already exists
+        // if (context.Modules.Any())
+        // {
+        //     return; // DB has been seeded
+        // }
 
         var modules = new[]
         {
@@ -115,6 +115,61 @@ public static class DbInitializer
                     new Section
                     {
                         ModuleId = 1,
+                        Title = "Kotlin Basics Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Kotlin Basics Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of Kotlin with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to declare a function in Kotlin?</li>
+                                <li>What is the difference between <code>val</code> and <code>var</code> in Kotlin?</li>
+                                <li>How do you declare a lambda in Kotlin?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 1,
+                        Title = "Kotlin Basics Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Kotlin Basics Multiple Choice Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of Kotlin with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to declare a function in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) fun</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) funtion</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) function</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between <code>val</code> and <code>var</code> in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) <code>val</code> is mutable, <code>var</code> is immutable</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) <code>val</code> is immutable, <code>var</code> is mutable</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) <code>val</code> and <code>var</code> are the same</li>
+                                    </ul>
+                                </li>
+                                <li>How do you declare a lambda in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) <code>lambda</code> { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) <code>fun</code> { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) <code>{ ... }</code></li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                        
+                    },
+                    new Section
+                    {
+                        ModuleId = 1,
                         Title = "Object-Oriented Programming in Kotlin",
                         Content = new List<string>
                         {
@@ -178,6 +233,61 @@ public static class DbInitializer
                     new Section
                     {
                         ModuleId = 1,
+                        Title = "Object-Oriented Programming in Kotlin Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in Kotlin Test</h2>
+                            <p>Test your knowledge of object-oriented programming in Kotlin with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of classes in Kotlin?</li>
+                                <li>How are constructors used in Kotlin?</li>
+                                <li>What is the difference between inheritance and interfaces in Kotlin?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 1,
+                        Title = "Object-Oriented Programming in Kotlin Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in Kotlin Multiple Choice Test</h2>
+                            <p>Test your knowledge of object-oriented programming in Kotlin with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of classes in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To define objects with properties and methods</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new data types</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>How are constructors used in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) To initialize object properties</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) To define methods</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between inheritance and interfaces in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) Inheritance allows a class to implement multiple interfaces, while interfaces define a hierarchy of classes</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) Inheritance allows a class to override
+                                        methods from another class, while interfaces define a common set of methods</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 1,
                         Title = "Advanced Kotlin Features",
                         Content = new List<string>
                         {
@@ -234,6 +344,60 @@ public static class DbInitializer
                             </code></pre>"
                         },
                         XpPoints = 40.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 1,
+                        Title = "Advanced Kotlin Features Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced Kotlin Features Test</h2>
+                            <p>Test your knowledge of the advanced features of Kotlin with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of extension functions in Kotlin?</li>
+                                <li>What is the difference between a data class and a regular class in Kotlin?</li>
+                                <li>How are sealed classes used in Kotlin?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 1,
+                        Title = "Advanced Kotlin Features Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced Kotlin Features Multiple Choice Test</h2>
+                            <p>Test your knowledge of the advanced features of Kotlin with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of extension functions in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To add new functionality to existing classes</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new classes</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between a data class and a regular class in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Data classes are used to represent immutable data, while regular classes are mutable</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Data classes are used for asynchronous programming, while regular classes are synchronous</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Data classes are used for inheritance, while regular classes are used for interfaces</li>
+                                    </ul>
+                                </li>
+                                <li>How are sealed classes used in Kotlin?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) To represent restricted class hierarchies</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
                     }
                 },
                 Content = "Kotlin is a modern language loved by developers for its simplicity and efficiency. It's fully interoperable with Java and is the preferred language for Android development. Start learning Kotlin now to build powerful applications!",
@@ -340,6 +504,60 @@ public static class DbInitializer
                     new Section
                     {
                         ModuleId = 2,
+                        Title = "Python Basics Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Python Basics Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of Python with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to define a function in Python?</li>
+                                <li>What is the difference between a list and a tuple in Python?</li>
+                                <li>How do you declare a lambda in Python?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 2,
+                        Title = "Python Basics Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Python Basics Multiple Choice Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of Python with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to define a function in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) def</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) function</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) define</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between a list and a tuple in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Lists are mutable, tuples are immutable</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Lists are ordered, tuples are unordered</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Lists can contain duplicates, tuples cannot</li>
+                                    </ul>
+                                </li>
+                                <li>How do you declare a lambda in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) lambda { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) def { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) { ... }</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 2,
                         Title = "Object-Oriented Programming in Python",
                         Content = new List<string>
                         {
@@ -391,6 +609,61 @@ public static class DbInitializer
                             <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>"
                         },
                         XpPoints = 30.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 2,
+                        Title = "Object-Oriented Programming in Python Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in Python Test</h2>
+                            <p>Test your knowledge of object-oriented programming in Python with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of classes in Python?</li>
+                                <li>How are constructors used in Python?</li>
+                                <li>What is the difference between inheritance and interfaces in Python?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 2,
+                        Title = "Object-Oriented Programming in Python Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in Python Multiple Choice Test</h2>
+                            <p>Test your knowledge of object-oriented programming in Python with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of classes in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To define objects with properties and methods</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new data types</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>How are constructors used in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) To initialize object properties</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) To define methods</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between inheritance and interfaces in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) Inheritance allows a class to implement multiple interfaces, while interfaces define a hierarchy of classes</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) Inheritance allows a class to override
+                                        methods from another class, while interfaces define a common set of methods</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
                     },
                     new Section
                     {
@@ -453,6 +726,60 @@ public static class DbInitializer
                             </code></pre>"
                         },
                         XpPoints = 40.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 2,
+                        Title = "Advanced Python Features Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced Python Features Test</h2>
+                            <p>Test your knowledge of the advanced features of Python with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of decorators in Python?</li>
+                                <li>What is the difference between a generator and a regular function in Python?</li>
+                                <li>How are context managers used in Python?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 2,
+                        Title = "Advanced Python Features Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced Python Features Multiple Choice Test</h2>
+                            <p>Test your knowledge of the advanced features of Python with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of decorators in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To modify the behavior of other functions</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new classes</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between a generator and a regular function in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Generators can yield multiple values</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Generators are faster than regular functions</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Generators are used for asynchronous programming</li>
+                                    </ul>
+                                </li>
+                                <li>How are context managers used in Python?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) To manage resources and ensure cleanup</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
                     }
                 },
                 Content = "Python is a versatile language known for its easy-to-read syntax and wide range of applications, including web development, data analysis, AI, and more. Start learning Python now to unlock endless programming possibilities!",
@@ -552,6 +879,60 @@ public static class DbInitializer
                     new Section
                     {
                         ModuleId = 3,
+                        Title = "Java Basics Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Java Basics Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of Java with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to declare a function in Java?</li>
+                                <li>What is the difference between primitive and reference types in Java?</li>
+                                <li>How do you declare a lambda in Java?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 3,
+                        Title = "Java Basics Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Java Basics Multiple Choice Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of Java with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to declare a function in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) fun</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) funtion</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) function</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between primitive and reference types in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Primitive types are stored on the stack, reference types are stored on the heap</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Primitive types are immutable, reference types are mutable</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Primitive types are passed by value, reference types are passed by reference</li>
+                                    </ul>
+                                </li>
+                                <li>How do you declare a lambda in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) <code>lambda</code> { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) <code>fun</code> { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) <code>{ ... }</code></li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 3,
                         Title = "Object-Oriented Programming in Java",
                         Content = new List<string>
                         {
@@ -616,6 +997,62 @@ public static class DbInitializer
                         },
                         XpPoints = 30.0m
                     },
+                    new Section
+                    {
+                        ModuleId = 3,
+                        Title = "Object-Oriented Programming in Java Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in Java Test</h2>
+                            <p>Test your knowledge of object-oriented programming in Java with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of constructors in Java?</li>
+                                <li>What is the difference between a class and an object in Java?</li>
+                                <li>How does inheritance work in Java?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 3,
+                        Title = "Object-Oriented Programming in Java Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in Java Multiple Choice Test</h2>
+                            <p>Test your knowledge of object-oriented programming in Java with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of constructors in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To create new objects</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To initialize object properties</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between a class and an object in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Classes are instances of objects</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Classes define the structure of objects</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Classes are immutable, objects are mutable</li>
+                                    </ul>
+                                </li>
+                                <li>How does inheritance work in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) Java supports single class inheritance
+                                        and multiple interface inheritance</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) Java supports multiple class inheritance
+                                        and single interface inheritance</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) Java does not support inheritance</li>
+                                    </ul>
+                                </li>   
+                            </ol>"
+                            },
+                            XpPoints = 50.0m
+                        },
                     new Section
                     {
                         ModuleId = 3,
@@ -684,6 +1121,60 @@ public static class DbInitializer
                             </code></pre>"
                         },
                         XpPoints = 40.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 3,
+                        Title = "Advanced Java Features Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced Java Features Test</h2>
+                            <p>Test your knowledge of the advanced features of Java with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of annotations in Java?</li>
+                                <li>What is the difference between generics and type erasure in Java?</li>
+                                <li>How are streams used in Java?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 3,
+                        Title = "Advanced Java Features Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced Java Features Multiple Choice Test</h2>
+                            <p>Test your knowledge of the advanced features of Java with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of annotations in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To provide metadata about classes, methods, and fields</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new classes</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between generics and type erasure in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Generics allow you to create type-safe collections and classes</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Generics are erased at runtime, type erasure is not</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Generics are immutable, type erasure is mutable</li>
+                                    </ul>
+                                </li>
+                                <li>How are streams used in Java?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) To process collections of data in a functional style</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
                     }
                 },
                 Content = "Java is a robust language widely used in enterprise environments. It's platform-independent, object-oriented, and designed for reliability and security. Start learning Java now to build high-performance applications for any platform!",
@@ -788,6 +1279,60 @@ public static class DbInitializer
                     new Section
                     {
                         ModuleId = 4,
+                        Title = "JavaScript Basics Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>JavaScript Basics Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of JavaScript with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to declare a function in JavaScript?</li>
+                                <li>What is the difference between mutable and immutable variables in JavaScript?</li>
+                                <li>How do you declare an arrow function in JavaScript?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 4,
+                        Title = "JavaScript Basics Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>JavaScript Basics Multiple Choice Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of JavaScript with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to declare a function in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) fun</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) funtion</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) function</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between mutable and immutable variables in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Mutable variables can be changed, immutable variables cannot</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Mutable variables are stored on the stack, immutable variables are stored on the heap</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Mutable variables are passed by value, immutable variables are passed by reference</li>
+                                    </ul>
+                                </li>
+                                <li>How do you declare an arrow function in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) <code>lambda</code> { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) <code>fun</code> { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) <code>{ ... }</code></li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 4,
                         Title = "Object-Oriented Programming in JavaScript",
                         Content = new List<string>
                         {
@@ -845,6 +1390,61 @@ public static class DbInitializer
                             <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>"
                         },
                         XpPoints = 30.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 4,
+                        Title = "Object-Oriented Programming in JavaScript Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in JavaScript Test</h2>
+                            <p>Test your knowledge of object-oriented programming in JavaScript with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of prototypes in JavaScript?</li>
+                                <li>What is the difference between classes and constructors in JavaScript?</li>
+                                <li>How does inheritance work in JavaScript?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 4,
+                        Title = "Object-Oriented Programming in JavaScript Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in JavaScript Multiple Choice Test</h2>
+                            <p>Test your knowledge of object-oriented programming in JavaScript with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of prototypes in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To define object behavior</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between classes and constructors in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Classes are instances of constructors</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Classes define the structure of objects</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Classes are immutable, constructors are mutable</li>
+                                    </ul>
+                                </li>
+                                <li>How does inheritance work in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) JavaScript supports prototypal inheritance and mixins</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) JavaScript supports single class inheritance
+                                        and multiple interface inheritance</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) JavaScript does not support inheritance</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
                     },
                     new Section
                     {
@@ -918,6 +1518,60 @@ public static class DbInitializer
                             </code></pre>"
                         },
                         XpPoints = 40.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 4,
+                        Title = "Advanced JavaScript Features Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced JavaScript Features Test</h2>
+                            <p>Test your knowledge of the advanced features of JavaScript with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of closures in JavaScript?</li>
+                                <li>How are asynchronous operations handled in JavaScript?</li>
+                                <li>What is the async/await syntax used for in JavaScript?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 4,
+                        Title = "Advanced JavaScript Features Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced JavaScript Features Multiple Choice Test</h2>
+                            <p>Test your knowledge of the advanced features of JavaScript with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of closures in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To capture variables from their lexical environment</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>How are asynchronous operations handled in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Asynchronous operations are handled with promises</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Asynchronous operations are handled with callbacks</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Asynchronous operations are handled with async/await</li>
+                                    </ul>
+                                </li>
+                                <li>What is the async/await syntax used for in JavaScript?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) To create new objects</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) To handle exceptions</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) To provide a more readable syntax for asynchronous programming</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
                     }
                 },
                 Content = "JavaScript is a dynamic language known for its versatility and ubiquity in web development. It's used for client-side scripting, server-side programming, and even for building mobile applications. Start learning JavaScript now to create interactive and dynamic web applications!",
@@ -1017,6 +1671,60 @@ public static class DbInitializer
                     new Section
                     {
                         ModuleId = 5,
+                        Title = "C# Basics Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>C# Basics Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of C# with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to declare a function in C#?</li>
+                                <li>What is the difference between value and reference types in C#?</li>
+                                <li>How do you declare a lambda function in C#?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 5,
+                        Title = "C# Basics Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>C# Basics Multiple Choice Test</h2>
+                            <p>Test your knowledge of the basic syntax and features of C# with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the keyword used to declare a function in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) fun</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) funtion</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) function</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between value and reference types in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Value types are stored on the stack, reference types are stored on the heap</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Value types can be changed, reference types cannot</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Value types are passed by value, reference types are passed by reference</li>
+                                    </ul>
+                                </li>
+                                <li>How do you declare a lambda function in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) <code>lambda</code> { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) <code>fun</code> { ... }</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) <code>{ ... }</code></li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 5,
                         Title = "Object-Oriented Programming in C#",
                         Content = new List<string>
                         {
@@ -1085,6 +1793,60 @@ public static class DbInitializer
                     new Section
                     {
                         ModuleId = 5,
+                        Title = "Object-Oriented Programming in C# Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in C# Test</h2>
+                            <p>Test your knowledge of object-oriented programming in C# with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of classes and objects in C#?</li>
+                                <li>How are constructors used in C#?</li>
+                                <li>What is the difference between inheritance and interfaces in C#?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 5,
+                        Title = "Object-Oriented Programming in C# Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Object-Oriented Programming in C# Multiple Choice Test</h2>
+                            <p>Test your knowledge of object-oriented programming in C# with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of classes and objects in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To define object behavior</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>How are constructors used in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Constructors are used to initialize object properties</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Constructors are used to create new objects</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Constructors are used to handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>What is the difference between inheritance and interfaces in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) Inheritance allows a class to inherit from another class, interfaces define a contract</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) Inheritance allows a class to implement multiple interfaces</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) Inheritance and interfaces are the same in C#</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 5,
                         Title = "Advanced C# Features",
                         Content = new List<string>
                         {
@@ -1147,6 +1909,60 @@ public static class DbInitializer
                             </code></pre>"
                         },
                         XpPoints = 30.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 5,
+                        Title = "Advanced C# Features Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced C# Features Test</h2>
+                            <p>Test your knowledge of the advanced features of C# with this quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of LINQ in C#?</li>
+                                <li>How are asynchronous operations handled in C#?</li>
+                                <li>What are delegates and events used for in C#?</li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
+                    },
+                    new Section
+                    {
+                        ModuleId = 5,
+                        Title = "Advanced C# Features Multiple Choice Quiz",
+                        Content = new List<string>
+                        {
+                            @"
+                            <h2>Advanced C# Features Multiple Choice Test</h2>
+                            <p>Test your knowledge of the advanced features of C# with this multiple-choice quiz. Good luck!</p>",
+                            @"
+                            <ol>
+                                <li>What is the purpose of LINQ in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q1"" value=""a""> a) To query data in a unified way</li>
+                                        <li><input type=""radio"" name=""q1"" value=""b""> b) To create new objects</li>
+                                        <li><input type=""radio"" name=""q1"" value=""c""> c) To handle exceptions</li>
+                                    </ul>
+                                </li>
+                                <li>How are asynchronous operations handled in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q2"" value=""a""> a) Asynchronous operations are handled with async/await</li>
+                                        <li><input type=""radio"" name=""q2"" value=""b""> b) Asynchronous operations are handled with callbacks</li>
+                                        <li><input type=""radio"" name=""q2"" value=""c""> c) Asynchronous operations are handled with promises</li>
+                                    </ul>
+                                </li>
+                                <li>What are delegates and events used for in C#?
+                                    <ul>
+                                        <li><input type=""radio"" name=""q3"" value=""a""> a) Delegates and events are used to define and handle events</li>
+                                        <li><input type=""radio"" name=""q3"" value=""b""> b) Delegates and events are used to create new objects</li>
+                                        <li><input type=""radio"" name=""q3"" value=""c""> c) Delegates and events are used to handle exceptions</li>
+                                    </ul>
+                                </li>
+                            </ol>"
+                        },
+                        XpPoints = 50.0m
                     }
                 },
                 Content = "C# is a powerful language with strong typing and object-oriented paradigms, widely used in game development, web applications, and Windows development. Start learning C# now to build robust and efficient applications!",
