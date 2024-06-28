@@ -235,6 +235,36 @@ namespace CodeGardenApi.Migrations
                     b.ToTable("Users", "dbo");
                 });
 
+            modelBuilder.Entity("CodeGardenApi.Models.UserModule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ModuleId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModuleId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserModules", "dbo");
+                });
+
             modelBuilder.Entity("CodeGardenApi.Models.Challenge", b =>
                 {
                     b.HasOne("CodeGardenApi.Models.Section", "Section")

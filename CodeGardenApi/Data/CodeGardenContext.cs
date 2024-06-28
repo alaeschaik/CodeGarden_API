@@ -13,6 +13,7 @@ public class CodeGardenContext(DbContextOptions<CodeGardenContext> options) : Db
     public DbSet<Module> Modules { get; init; }
     public DbSet<Section> Sections { get; init; }
     public DbSet<Challenge> Challenges { get; init; }
+    public DbSet<UserModule> UserModules { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

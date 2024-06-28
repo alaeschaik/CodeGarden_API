@@ -6,12 +6,6 @@ namespace CodeGardenApi.Models;
 
 using System.ComponentModel.DataAnnotations;
 
-public enum ModuleState
-{
-    Start,
-    Continue
-}
-
 [Index(nameof(Title), IsUnique = true)]
 public class Module
 {

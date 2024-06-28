@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeGardenApi.Migrations
 {
     [DbContext(typeof(CodeGardenContext))]
-    [Migration("20240627141518_IncludeSectionsDataToModules")]
-    partial class IncludeSectionsDataToModules
+    [Migration("20240628163023_AddUserModuleEntity")]
+    partial class AddUserModuleEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -238,6 +238,36 @@ namespace CodeGardenApi.Migrations
                     b.ToTable("Users", "dbo");
                 });
 
+            modelBuilder.Entity("CodeGardenApi.Models.UserModule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ModuleId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModuleId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserModules", "dbo");
+                });
+
             modelBuilder.Entity("CodeGardenApi.Models.Challenge", b =>
                 {
                     b.HasOne("CodeGardenApi.Models.Section", "Section")
@@ -288,6 +318,25 @@ namespace CodeGardenApi.Migrations
                         .IsRequired();
 
                     b.Navigation("Module");
+                });
+
+            modelBuilder.Entity("CodeGardenApi.Models.UserModule", b =>
+                {
+                    b.HasOne("CodeGardenApi.Models.Module", "Module")
+                        .WithMany()
+                        .HasForeignKey("ModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CodeGardenApi.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Module");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Module", b =>
