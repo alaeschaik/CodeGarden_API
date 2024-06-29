@@ -32,9 +32,6 @@ public class Module
     [Column(TypeName = "varchar(max)")]
     public required string Content { get; set; }
     
-    [Column(TypeName = "varchar(100)")]
-    public ModuleState State { get; set; } = ModuleState.Start;
-    
     // [JsonIgnore]
     [Column(TypeName = "varchar(max)")]
     public ICollection<Section>? Sections { get; set; }

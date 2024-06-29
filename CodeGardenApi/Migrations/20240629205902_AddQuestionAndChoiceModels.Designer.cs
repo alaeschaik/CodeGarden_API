@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeGardenApi.Migrations
 {
     [DbContext(typeof(CodeGardenContext))]
-    [Migration("20240625173839_AddStateToModule")]
-    partial class AddStateToModule
+    [Migration("20240629205902_AddQuestionAndChoiceModels")]
+    partial class AddQuestionAndChoiceModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,32 @@ namespace CodeGardenApi.Migrations
                     b.HasIndex("SectionId");
 
                     b.ToTable("Challenges", "dbo");
+                });
+
+            modelBuilder.Entity("CodeGardenApi.Models.Choice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("IsCorrect")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int?>("OpenEndedQuestionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OpenEndedQuestionId");
+
+                    b.ToTable("Choices", "dbo");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Comment", b =>
@@ -102,10 +128,6 @@ namespace CodeGardenApi.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(1000)");
 
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
@@ -120,6 +142,32 @@ namespace CodeGardenApi.Migrations
                         .IsUnique();
 
                     b.ToTable("Modules", "dbo");
+                });
+
+            modelBuilder.Entity("CodeGardenApi.Models.OpenEndedQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ChallengeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("CorrectAnswer")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChallengeId");
+
+                    b.ToTable("OpenEndedQuestions", "dbo");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Post", b =>
@@ -234,6 +282,30 @@ namespace CodeGardenApi.Migrations
                     b.ToTable("Users", "dbo");
                 });
 
+            modelBuilder.Entity("CodeGardenApi.Models.UserModule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ModuleId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserModules", "dbo");
+                });
+
             modelBuilder.Entity("CodeGardenApi.Models.Challenge", b =>
                 {
                     b.HasOne("CodeGardenApi.Models.Section", "Section")
@@ -243,6 +315,13 @@ namespace CodeGardenApi.Migrations
                         .IsRequired();
 
                     b.Navigation("Section");
+                });
+
+            modelBuilder.Entity("CodeGardenApi.Models.Choice", b =>
+                {
+                    b.HasOne("CodeGardenApi.Models.OpenEndedQuestion", null)
+                        .WithMany("Choices")
+                        .HasForeignKey("OpenEndedQuestionId");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Comment", b =>
@@ -262,6 +341,13 @@ namespace CodeGardenApi.Migrations
                     b.Navigation("Post");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CodeGardenApi.Models.OpenEndedQuestion", b =>
+                {
+                    b.HasOne("CodeGardenApi.Models.Challenge", null)
+                        .WithMany("OpenEndedQuestions")
+                        .HasForeignKey("ChallengeId");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Post", b =>
@@ -286,9 +372,19 @@ namespace CodeGardenApi.Migrations
                     b.Navigation("Module");
                 });
 
+            modelBuilder.Entity("CodeGardenApi.Models.Challenge", b =>
+                {
+                    b.Navigation("OpenEndedQuestions");
+                });
+
             modelBuilder.Entity("CodeGardenApi.Models.Module", b =>
                 {
                     b.Navigation("Sections");
+                });
+
+            modelBuilder.Entity("CodeGardenApi.Models.OpenEndedQuestion", b =>
+                {
+                    b.Navigation("Choices");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Post", b =>

@@ -11,7 +11,7 @@ public class Challenge
     public int Id { get; init; }
 
     [Required]
-    public ChallengeType ChallengeType { get; set; }  // e.g., "multiple_choice", "question", "code_snippet"
+    public ChallengeType ChallengeType { get; set; }  // e.g., "multiple_choice", "question", "code_snippet", "learning_content"
 
     [Required]
     public required int SectionId { get; set; }
@@ -22,4 +22,7 @@ public class Challenge
     
     [JsonIgnore]
     public Section? Section { get; set; }
+    
+    [JsonIgnore]
+    public ICollection<OpenEndedQuestion>? OpenEndedQuestions { get; set; }
 }

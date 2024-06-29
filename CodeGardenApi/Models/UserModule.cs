@@ -1,16 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Models;
 
-public enum ModuleState
-{
-    Start,
-    Continue
-}
-
-[Index(nameof(UserId), IsUnique = true)]
-[Index(nameof(ModuleId), IsUnique = true)]
 public class UserModule
 {
     [Key]

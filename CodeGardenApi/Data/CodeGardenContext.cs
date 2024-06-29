@@ -14,6 +14,8 @@ public class CodeGardenContext(DbContextOptions<CodeGardenContext> options) : Db
     public DbSet<Section> Sections { get; init; }
     public DbSet<Challenge> Challenges { get; init; }
     public DbSet<UserModule> UserModules { get; init; }
+    public DbSet<Choice> Choices { get; init; }
+    public DbSet<OpenEndedQuestion> OpenEndedQuestions { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -17,7 +17,6 @@ public class SectionsController(CodeGardenContext context) : ControllerBase
     {
         ArgumentNullException.ThrowIfNull(createSectionDto);
         ArgumentNullException.ThrowIfNull(createSectionDto.Title);
-        ArgumentNullException.ThrowIfNull(createSectionDto.Content);
         ArgumentNullException.ThrowIfNull(createSectionDto.ModuleId);
         ArgumentNullException.ThrowIfNull(createSectionDto.XpPoints);
 
@@ -32,7 +31,6 @@ public class SectionsController(CodeGardenContext context) : ControllerBase
         var section = new Models.Section
         {
             Title = createSectionDto.Title,
-            Content = createSectionDto.Content,
             ModuleId = (int)createSectionDto.ModuleId,
             XpPoints = (decimal)createSectionDto.XpPoints,
         };

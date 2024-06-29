@@ -18,10 +18,6 @@ public class Section
     [Required]
     [Column(TypeName = "varchar(100)")]
     public required string Title { get; set; }
-    
-    [Required]
-    [Column(TypeName = "varchar(max)")]
-    public required List<string> Content { get; set; }
 
     [Required]
     public required decimal XpPoints { get; set; }

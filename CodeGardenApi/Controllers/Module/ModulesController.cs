@@ -61,16 +61,6 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
     }
 
     [Authorize]
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.Module>>> GetModules(CancellationToken cancellationToken)
-    {
-        var modulesWithSections = await context.Modules
-            .Include(m => m.Sections)
-            .ToListAsync(cancellationToken);
-        return Ok(modulesWithSections);
-    }
-
-    [Authorize]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> UpdateModule(
         [FromRoute] int id,
