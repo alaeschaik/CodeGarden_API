@@ -1,8 +1,8 @@
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace CodeGardenApi.Controllers.OpenEndedQuestion;
+namespace CodeGardenApi.Controllers.Question;
 
-public sealed record CreateOpenEndedQuestionDto
+public sealed record CreateQuestionDto
 (
     [property: SwaggerSchema(Nullable = false)]
     string? Content,
@@ -10,7 +10,7 @@ public sealed record CreateOpenEndedQuestionDto
     string? CorrectAnswer
 );
 
-public sealed record UpdateOpenEndedQuestionDto
+public sealed record UpdateQuestionDto
 (
     [property: SwaggerSchema(Nullable = true)]
     string? Content,

@@ -24,5 +24,5 @@ public class Challenge
     public Section? Section { get; set; }
     
     [JsonIgnore]
-    public ICollection<OpenEndedQuestion>? OpenEndedQuestions { get; set; }
+    public ICollection<Question>? Questions { get; set; }
 }

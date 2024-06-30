@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace CodeGardenApi.Models;
 
-public class OpenEndedQuestion
+public class Question
 {
     [Key]
     public int Id { get; set; }

@@ -8,11 +8,11 @@ public static class DbInitializer
     {
         context.Database.EnsureCreated();
   
-        // // Check if data already exists
-        // if (context.Modules.Any())
-        // {
-        //     return; // DB has been seeded
-        // }
+        // Check if data already exists
+        if (context.Modules.Any())
+        {
+            return; // DB has been seeded
+        }
 
         var modules = new[]
         {
@@ -46,9 +46,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to Kotlin Quiz</h2>
                                     <p>Test your knowledge of Kotlin with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is Kotlin?",
                                         CorrectAnswer = "Kotlin is a modern, statically typed programming language that runs on the Java Virtual Machine (JVM) and can also be compiled to JavaScript or native code. Developed by JetBrains, Kotlin is designed to be fully interoperable with Java, making it a popular choice for Android development and other JVM-based projects.",
@@ -177,19 +177,19 @@ public static class DbInitializer
                               ChallengeType  = ChallengeType.Question,
                               SectionId = 2,
                               Content = "What is the keyword used to declare a function in Kotlin?",
-                              OpenEndedQuestions = new List<OpenEndedQuestion>
+                              Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in Kotlin?",
                                         CorrectAnswer = "fun"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between val and var in Kotlin?",
                                         CorrectAnswer = "val is immutable, var is mutable"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare a lambda in Kotlin?",
                                         CorrectAnswer = "{ ... }"
@@ -204,9 +204,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Kotlin Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of Kotlin with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in Kotlin?",
                                         CorrectAnswer = "fun",
@@ -229,7 +229,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between val and var in Kotlin?",
                                         CorrectAnswer = "val is immutable, var is mutable",
@@ -252,7 +252,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare a lambda in Kotlin?",
                                         CorrectAnswer = "{ ... }",
@@ -368,19 +368,19 @@ public static class DbInitializer
                               ChallengeType = ChallengeType.Question,
                               SectionId = 3,
                               Content = "What is the purpose of classes in Kotlin?",
-                              OpenEndedQuestions = new List<OpenEndedQuestion>
+                              Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of classes in Kotlin?",
                                         CorrectAnswer = "To define objects with properties and methods"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are constructors used in Kotlin?",
                                         CorrectAnswer = "To initialize object properties"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in Kotlin?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement"
@@ -395,9 +395,9 @@ public static class DbInitializer
                                 @"
                                 <h2>Object-Oriented Programming in Kotlin Multiple Choice Test</h2>
                                 <p>Test your knowledge of object-oriented programming in Kotlin with this multiple-choice quiz. Good luck!</p>",
-                              OpenEndedQuestions = new List<OpenEndedQuestion>
+                              Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of classes in Kotlin?",
                                         CorrectAnswer = "To define objects with properties and methods",
@@ -420,7 +420,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are constructors used in Kotlin?",
                                         CorrectAnswer = "To initialize object properties",
@@ -443,7 +443,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in Kotlin?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement",
@@ -570,19 +570,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 4,
                                 Content = "Kotilin Advanced Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of extension functions in Kotlin?",
                                         CorrectAnswer = "To add new functionality to existing classes without modifying their source code"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between a data class and a regular class in Kotlin?",
                                         CorrectAnswer = "Data classes are used to represent immutable data, while regular classes are mutable"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are sealed classes used in Kotlin?",
                                         CorrectAnswer = "To represent restricted class hierarchies"
@@ -597,9 +597,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced Kotlin Features Multiple Choice Test</h2>
                                     <p>Test your knowledge of the advanced features of Kotlin with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of extension functions in Kotlin?",
                                         CorrectAnswer = "To add new functionality to existing classes",
@@ -622,7 +622,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between a data class and a regular class in Kotlin?",
                                         CorrectAnswer = "Data classes are used to represent immutable data, while regular classes are mutable",
@@ -645,7 +645,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are sealed classes used in Kotlin?",
                                         CorrectAnswer = "To represent restricted class hierarchies",
@@ -799,19 +799,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 5,
                                 Content = "Python Basics Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is Python known for?",
                                         CorrectAnswer = "Simplicity and readability"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What are some key features of Python?",
                                         CorrectAnswer = "Interpreted, high-level, general-purpose"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How does Python compare to other languages?",
                                         CorrectAnswer = "Emphasizes code readability with significant whitespace"
@@ -826,9 +826,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to Python Multiple Choice Test</h2>
                                     <p>Test your knowledge of Python with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is Python known for?",
                                         CorrectAnswer = "Simplicity and readability",
@@ -851,7 +851,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What are some key features of Python?",
                                         CorrectAnswer = "Interpreted, high-level, general-purpose",
@@ -874,7 +874,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How does Python compare to other languages?",
                                         CorrectAnswer = "Emphasizes code readability with significant whitespace",
@@ -989,19 +989,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 6,
                                 Content = "Object-Oriented Programming in Python Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of classes in Python?",
                                         CorrectAnswer = "To define objects with properties and methods"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are constructors used in Python?",
                                         CorrectAnswer = "To initialize object properties"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in Python?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement"
@@ -1016,9 +1016,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in Python Multiple Choice Test</h2>
                                     <p>Test your knowledge of object-oriented programming in Python with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of classes in Python?",
                                         CorrectAnswer = "To define objects with properties and methods",
@@ -1041,7 +1041,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are constructors used in Python?",
                                         CorrectAnswer = "To initialize object properties",
@@ -1064,7 +1064,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in Python?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement",
@@ -1094,19 +1094,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 6,
                                 Content = "Object-Oriented Programming in Python Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of classes in Python?",
                                         CorrectAnswer = "To define objects with properties and methods"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are constructors used in Python?",
                                         CorrectAnswer = "To initialize object properties"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in Python?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement"
@@ -1163,19 +1163,19 @@ public static class DbInitializer
                                     ChallengeType = ChallengeType.Question,
                                     SectionId = 7,
                                     Content = "Advanced Python Features Quiz",
-                                    OpenEndedQuestions = new List<OpenEndedQuestion>
+                                    Questions = new List<Question>
                                     {
-                                        new OpenEndedQuestion
+                                        new Question
                                         {
                                             Content = "What is the purpose of decorators in Python?",
                                             CorrectAnswer = "To modify the behavior of other functions"
                                         },
-                                        new OpenEndedQuestion
+                                        new Question
                                         {
                                             Content = "What is the difference between a generator and a regular function in Python?",
                                             CorrectAnswer = "Generators can yield multiple values"
                                         },
-                                        new OpenEndedQuestion
+                                        new Question
                                         {
                                             Content = "How are context managers used in Python?",
                                             CorrectAnswer = "To manage resources and ensure cleanup"
@@ -1187,9 +1187,9 @@ public static class DbInitializer
                                     ChallengeType = ChallengeType.MultipleChoice,
                                     SectionId = 7,
                                     Content = "<h2>Advanced Python Features Multiple Choice Test</h2><p>Test your knowledge of the advanced features of Python with this multiple-choice quiz. Good luck!</p>",
-                                    OpenEndedQuestions = new List<OpenEndedQuestion>
+                                    Questions = new List<Question>
                                     {
-                                        new OpenEndedQuestion
+                                        new Question
                                         {
                                             Content = "What is the purpose of decorators in Python?",
                                             CorrectAnswer = "To modify the behavior of other functions",
@@ -1212,7 +1212,7 @@ public static class DbInitializer
                                                 }
                                             }
                                         },
-                                        new OpenEndedQuestion
+                                        new Question
                                         {
                                             Content = "What is the difference between a generator and a regular function in Python?",
                                             CorrectAnswer = "Generators can yield multiple values",
@@ -1235,7 +1235,7 @@ public static class DbInitializer
                                                 }
                                             }
                                         },
-                                        new OpenEndedQuestion
+                                        new Question
                                         {
                                             Content = "How are context managers used in Python?",
                                             CorrectAnswer = "To manage resources and ensure cleanup",
@@ -1383,19 +1383,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 8,
                                 Content = "Java Basics Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in Java?",
                                         CorrectAnswer = "void"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between primitive and reference types in Java?",
                                         CorrectAnswer = "Primitive types store values directly, while reference types store references to objects"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare a lambda in Java?",
                                         CorrectAnswer = "Using the lambda operator (->)"
@@ -1410,9 +1410,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Java Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of Java with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in Java?",
                                         CorrectAnswer = "void",
@@ -1435,7 +1435,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between primitive and reference types in Java?",
                                         CorrectAnswer = "Primitive types store values directly, while reference types store references to objects",
@@ -1458,7 +1458,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare a lambda in Java?",
                                         CorrectAnswer = "Using the lambda operator (->)",
@@ -1595,19 +1595,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 9,
                                 Content = "Java Basics Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in Java?",
                                         CorrectAnswer = "void"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between primitive and reference types in Java?",
                                         CorrectAnswer = "Primitive types store values directly, while reference types store references to objects"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare a lambda in Java?",
                                         CorrectAnswer = "Using the lambda operator (->)"
@@ -1622,9 +1622,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Java Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of Java with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in Java?",
                                         CorrectAnswer = "void",
@@ -1647,7 +1647,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between primitive and reference types in Java?",
                                         CorrectAnswer = "Primitive types store values directly, while reference types store references to objects",
@@ -1670,7 +1670,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare a lambda in Java?",
                                         CorrectAnswer = "Using the lambda operator (->)",
@@ -1797,19 +1797,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 10,
                                 Content = "Object-Oriented Programming in Java Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of constructors in Java?",
                                         CorrectAnswer = "To create new objects"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between a class and an object in Java?",
                                         CorrectAnswer = "Classes are instances of objects"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How does inheritance work in Java?",
                                         CorrectAnswer = "Java supports single class inheritance and multiple interface inheritance"
@@ -1824,9 +1824,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in Java Multiple Choice Test</h2>
                                     <p>Test your knowledge of object-oriented programming in Java with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of constructors in Java?",
                                         CorrectAnswer = "To create new objects",
@@ -1849,7 +1849,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between a class and an object in Java?",
                                         CorrectAnswer = "Classes are instances of objects",
@@ -1872,7 +1872,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How does inheritance work in Java?",
                                         CorrectAnswer = "Java supports single class inheritance and multiple interface inheritance",
@@ -2007,19 +2007,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 11,
                                 Content = "Advanced Java Features Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of annotations in Java?",
                                         CorrectAnswer = "To provide metadata about classes, methods, and fields"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between generics and type erasure in Java?",
                                         CorrectAnswer = "Generics allow you to create type-safe collections and classes"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are streams used in Java?",
                                         CorrectAnswer = "To process collections of data in a functional style"
@@ -2034,9 +2034,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced Java Features Multiple Choice Test</h2>
                                     <p>Test your knowledge of the advanced features of Java with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of annotations in Java?",
                                         CorrectAnswer = "To provide metadata about classes, methods, and fields",
@@ -2059,7 +2059,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between generics and type erasure in Java?",
                                         CorrectAnswer = "Generics allow you to create type-safe collections and classes",
@@ -2082,7 +2082,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are streams used in Java?",
                                         CorrectAnswer = "To process collections of data in a functional style",
@@ -2235,19 +2235,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 12,
                                 Content = "JavaScript Basics Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in JavaScript?",
                                         CorrectAnswer = "function"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between mutable and immutable variables in JavaScript?",
                                         CorrectAnswer = "Mutable variables can be changed, immutable variables cannot"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare an arrow function in JavaScript?",
                                         CorrectAnswer = "Using the arrow (=>) syntax"
@@ -2262,9 +2262,9 @@ public static class DbInitializer
                                     @"
                                     <h2>JavaScript Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of JavaScript with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in JavaScript?",
                                         CorrectAnswer = "function",
@@ -2287,7 +2287,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between mutable and immutable variables in JavaScript?",
                                         CorrectAnswer = "Mutable variables can be changed, immutable variables cannot",
@@ -2310,7 +2310,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare an arrow function in JavaScript?",
                                         CorrectAnswer = "Using the arrow (=>) syntax",
@@ -2437,19 +2437,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 13,
                                 Content = "Object-Oriented Programming in JavaScript Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of prototypes in JavaScript?",
                                         CorrectAnswer = "To define object behavior"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between classes and constructors in JavaScript?",
                                         CorrectAnswer = "Classes are instances of constructors"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How does inheritance work in JavaScript?",
                                         CorrectAnswer = "JavaScript supports prototypal inheritance and mixins"
@@ -2464,9 +2464,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in JavaScript Multiple Choice Test</h2>
                                     <p>Test your knowledge of object-oriented programming in JavaScript with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of prototypes in JavaScript?",
                                         CorrectAnswer = "To define object behavior",
@@ -2489,7 +2489,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between classes and constructors in JavaScript?",
                                         CorrectAnswer = "Classes are instances of constructors",
@@ -2512,7 +2512,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How does inheritance work in JavaScript?",
                                         CorrectAnswer = "JavaScript supports prototypal inheritance and mixins",
@@ -2651,19 +2651,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 14,
                                 Content = "Advanced JavaScript Features Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of closures in JavaScript?",
                                         CorrectAnswer = "To capture variables from their lexical environment"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are asynchronous operations handled in JavaScript?",
                                         CorrectAnswer = "Asynchronous operations are handled with promises"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the async/await syntax used for in JavaScript?",
                                         CorrectAnswer = "To provide a more readable syntax for asynchronous programming"
@@ -2678,9 +2678,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced JavaScript Features Multiple Choice Test</h2>
                                     <p>Test your knowledge of the advanced features of JavaScript with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of closures in JavaScript?",
                                         CorrectAnswer = "To capture variables from their lexical environment",
@@ -2703,7 +2703,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are asynchronous operations handled in JavaScript?",
                                         CorrectAnswer = "Asynchronous operations are handled with promises",
@@ -2726,7 +2726,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the async/await syntax used for in JavaScript?",
                                         CorrectAnswer = "To provide a more readable syntax for asynchronous programming",
@@ -2874,19 +2874,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 15,
                                 Content = "C# Basics Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in C#?",
                                         CorrectAnswer = "void"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between value and reference types in C#?",
                                         CorrectAnswer = "Value types store their data directly, reference types store a reference to their data"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare a lambda function in C#?",
                                         CorrectAnswer = "Using the => syntax"
@@ -2901,9 +2901,9 @@ public static class DbInitializer
                                     @"
                                     <h2>C# Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of C# with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the keyword used to declare a function in C#?",
                                         CorrectAnswer = "void",
@@ -2926,7 +2926,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between value and reference types in C#?",
                                         CorrectAnswer = "Value types store their data directly, reference types store a reference to their data",
@@ -2949,7 +2949,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How do you declare a lambda function in C#?",
                                         CorrectAnswer = "Using the => syntax",
@@ -3083,19 +3083,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 16,
                                 Content = "Object-Oriented Programming in C# Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of classes and objects in C#?",
                                         CorrectAnswer = "To define object behavior"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are constructors used in C#?",
                                         CorrectAnswer = "Constructors are used to initialize object properties"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in C#?",
                                         CorrectAnswer = "Inheritance allows a class to inherit from another class, interfaces define a contract"
@@ -3110,9 +3110,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in C# Multiple Choice Test</h2>
                                     <p>Test your knowledge of object-oriented programming in C# with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of classes and objects in C#?",
                                         CorrectAnswer = "To define object behavior",
@@ -3135,7 +3135,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are constructors used in C#?",
                                         CorrectAnswer = "Constructors are used to initialize object properties",
@@ -3158,7 +3158,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in C#?",
                                         CorrectAnswer = "Inheritance allows a class to inherit from another class, interfaces define a contract",
@@ -3290,19 +3290,19 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 17,
                                 Content = "Advanced C# Features Quiz",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of LINQ in C#?",
                                         CorrectAnswer = "To query data in a unified way"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are asynchronous operations handled in C#?",
                                         CorrectAnswer = "Asynchronous operations are handled with async/await"
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What are delegates and events used for in C#?",
                                         CorrectAnswer = "Delegates and events are used to define and handle events"
@@ -3317,9 +3317,9 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced C# Features Multiple Choice Test</h2>
                                     <p>Test your knowledge of the advanced features of C# with this multiple-choice quiz. Good luck!</p>",
-                                OpenEndedQuestions = new List<OpenEndedQuestion>
+                                Questions = new List<Question>
                                 {
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What is the purpose of LINQ in C#?",
                                         CorrectAnswer = "To query data in a unified way",
@@ -3342,7 +3342,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "How are asynchronous operations handled in C#?",
                                         CorrectAnswer = "Asynchronous operations are handled with async/await",
@@ -3365,7 +3365,7 @@ public static class DbInitializer
                                             }
                                         }
                                     },
-                                    new OpenEndedQuestion
+                                    new Question
                                     {
                                         Content = "What are delegates and events used for in C#?",
                                         CorrectAnswer = "Delegates and events are used to define and handle events",
