@@ -86,4 +86,5 @@ app.UseSwaggerUI(c =>
 app.MapControllers();
 
 app.MigrateDatabase();
+app.LoadSeedData();
 app.Run();

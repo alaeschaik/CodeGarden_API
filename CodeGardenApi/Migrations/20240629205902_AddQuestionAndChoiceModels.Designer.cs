@@ -4,6 +4,7 @@ using CodeGardenApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeGardenApi.Migrations
 {
     [DbContext(typeof(CodeGardenContext))]
-    partial class CodeGardenContextModelSnapshot : ModelSnapshot
+    [Migration("20240629205902_AddQuestionAndChoiceModels")]
+    partial class AddQuestionAndChoiceModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,12 +68,12 @@ namespace CodeGardenApi.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int?>("QuestionId")
+                    b.Property<int?>("OpenEndedQuestionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex("OpenEndedQuestionId");
 
                     b.ToTable("Choices", "dbo");
                 });
@@ -141,6 +144,32 @@ namespace CodeGardenApi.Migrations
                     b.ToTable("Modules", "dbo");
                 });
 
+            modelBuilder.Entity("CodeGardenApi.Models.OpenEndedQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ChallengeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("CorrectAnswer")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChallengeId");
+
+                    b.ToTable("OpenEndedQuestions", "dbo");
+                });
+
             modelBuilder.Entity("CodeGardenApi.Models.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -177,32 +206,6 @@ namespace CodeGardenApi.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Posts", "dbo");
-                });
-
-            modelBuilder.Entity("CodeGardenApi.Models.Question", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ChallengeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<string>("CorrectAnswer")
-                        .IsRequired()
-                        .HasColumnType("varchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ChallengeId");
-
-                    b.ToTable("Questions", "dbo");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Section", b =>
@@ -316,9 +319,9 @@ namespace CodeGardenApi.Migrations
 
             modelBuilder.Entity("CodeGardenApi.Models.Choice", b =>
                 {
-                    b.HasOne("CodeGardenApi.Models.Question", null)
+                    b.HasOne("CodeGardenApi.Models.OpenEndedQuestion", null)
                         .WithMany("Choices")
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("OpenEndedQuestionId");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Comment", b =>
@@ -340,6 +343,13 @@ namespace CodeGardenApi.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("CodeGardenApi.Models.OpenEndedQuestion", b =>
+                {
+                    b.HasOne("CodeGardenApi.Models.Challenge", null)
+                        .WithMany("OpenEndedQuestions")
+                        .HasForeignKey("ChallengeId");
+                });
+
             modelBuilder.Entity("CodeGardenApi.Models.Post", b =>
                 {
                     b.HasOne("CodeGardenApi.Models.User", "User")
@@ -349,13 +359,6 @@ namespace CodeGardenApi.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CodeGardenApi.Models.Question", b =>
-                {
-                    b.HasOne("CodeGardenApi.Models.Challenge", null)
-                        .WithMany("Questions")
-                        .HasForeignKey("ChallengeId");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Section", b =>
@@ -371,7 +374,7 @@ namespace CodeGardenApi.Migrations
 
             modelBuilder.Entity("CodeGardenApi.Models.Challenge", b =>
                 {
-                    b.Navigation("Questions");
+                    b.Navigation("OpenEndedQuestions");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Module", b =>
@@ -379,14 +382,14 @@ namespace CodeGardenApi.Migrations
                     b.Navigation("Sections");
                 });
 
+            modelBuilder.Entity("CodeGardenApi.Models.OpenEndedQuestion", b =>
+                {
+                    b.Navigation("Choices");
+                });
+
             modelBuilder.Entity("CodeGardenApi.Models.Post", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("CodeGardenApi.Models.Question", b =>
-                {
-                    b.Navigation("Choices");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Section", b =>

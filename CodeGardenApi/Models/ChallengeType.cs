@@ -4,5 +4,6 @@ public enum ChallengeType
 {
     MultipleChoice,
     Question,
-    CodeSnippet
+    CodeSnippet,
+    LearningContent
 }

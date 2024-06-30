@@ -8,6 +8,8 @@ public sealed record CreateSectionDto(
     [property: SwaggerSchema(Nullable = false)]
     string? Title,
     [property: SwaggerSchema(Nullable = false)]
+    List<string>? Content,
+    [property: SwaggerSchema(Nullable = false)]
     decimal? XpPoints);
 
 public sealed record UpdateSectionDto(

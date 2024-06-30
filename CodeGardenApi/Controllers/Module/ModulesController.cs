@@ -37,6 +37,7 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
             Introduction = createModuleDto.Introduction,
             TotalXpPoints = (decimal)createModuleDto.TotalXpPoints,
             Content = createModuleDto.Content,
+            Sections = new List<Models.Section>()
         };
 
         context.Modules.Add(module);
@@ -57,13 +58,6 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
         if (module is null) return NotFound();
 
         return module;
-    }
-
-    [Authorize]
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Models.Module>>> GetModules(CancellationToken cancellationToken)
-    {
-        return await context.Modules.AsNoTracking().ToListAsync(cancellationToken);
     }
 
     [Authorize]
