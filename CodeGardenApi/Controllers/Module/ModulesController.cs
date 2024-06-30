@@ -45,6 +45,14 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
 
         return CreatedAtAction(nameof(GetModule), new { id = module.Id }, module);
     }
+    
+    [Authorize]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Models.Module>>> GetModules(CancellationToken cancellationToken)
+    {
+        // TODO: add pagination
+        return await context.Modules.AsNoTracking().ToListAsync(cancellationToken);
+    }
 
     [Authorize]
     [HttpGet("{id:int}")]
