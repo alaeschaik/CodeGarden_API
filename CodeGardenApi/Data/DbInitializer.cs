@@ -3398,7 +3398,7 @@ public static class DbInitializer
                 TotalXpPoints = 500.0m
             }
         };
-
+        
         context.Modules.AddRange(modules);
         context.SaveChanges();
     }
