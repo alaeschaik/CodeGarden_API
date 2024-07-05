@@ -20,16 +20,6 @@ namespace CodeGardenApi.Migrations
                 schema: "dbo",
                 table: "UserModules");
 
-            migrationBuilder.DropColumn(
-                name: "Content",
-                schema: "dbo",
-                table: "Sections");
-
-            migrationBuilder.DropColumn(
-                name: "State",
-                schema: "dbo",
-                table: "Modules");
-
             migrationBuilder.CreateTable(
                 name: "OpenEndedQuestions",
                 schema: "dbo",
@@ -97,22 +87,6 @@ namespace CodeGardenApi.Migrations
             migrationBuilder.DropTable(
                 name: "OpenEndedQuestions",
                 schema: "dbo");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Content",
-                schema: "dbo",
-                table: "Sections",
-                type: "varchar(max)",
-                nullable: false,
-                defaultValue: "");
-
-            migrationBuilder.AddColumn<string>(
-                name: "State",
-                schema: "dbo",
-                table: "Modules",
-                type: "varchar(100)",
-                nullable: false,
-                defaultValue: "");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserModules_ModuleId",

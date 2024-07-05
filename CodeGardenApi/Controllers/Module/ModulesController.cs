@@ -51,7 +51,10 @@ public class ModulesController(CodeGardenContext context) : ControllerBase
     public async Task<ActionResult<IEnumerable<Models.Module>>> GetModules(CancellationToken cancellationToken)
     {
         // TODO: add pagination
-        return await context.Modules.AsNoTracking().ToListAsync(cancellationToken);
+        return await context.Modules
+            .AsNoTracking()
+            .Include(m => m.Sections)
+            .ToListAsync(cancellationToken);
     }
 
     [Authorize]
