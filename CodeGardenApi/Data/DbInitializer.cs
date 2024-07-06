@@ -74,7 +74,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 10.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -278,7 +278,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 20.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -470,7 +470,7 @@ public static class DbInitializer
                                 }
                            }
                            },
-                       XpPoints = 20.0m
+                       XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -671,11 +671,11 @@ public static class DbInitializer
                                 }
                             }   
                         },
-                        XpPoints = 40.0m
+                        XpPoints = 25.0m
                     }
                 },
                 Content = "Kotlin is a statically typed programming language that runs on the Java virtual machine and also can be compiled to JavaScript source code or use the LLVM compiler infrastructure. Its primary development is from a team of JetBrains programmers based in Saint Petersburg, Russia.",
-                TotalXpPoints = 500.0m
+                TotalXpPoints = 100.0m
             },
             new Module
             {
@@ -900,7 +900,7 @@ public static class DbInitializer
                                 }
                             },
                         },
-                        XpPoints = 10.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -1114,7 +1114,7 @@ public static class DbInitializer
                                 }
                           }
                       },
-                      XpPoints = 10.0m
+                      XpPoints = 25.0m
                     },
                    new Section
                    {
@@ -1261,11 +1261,11 @@ public static class DbInitializer
                                     }
                               }
                        },
-                       XpPoints = 10.0m
+                       XpPoints = 25.0m
                    }
                 },
                 Content = "Python is a high-level, interpreted programming language known for its simplicity and readability. It is widely used in web development, data analysis, artificial intelligence, and scientific computing.",
-                TotalXpPoints = 500.0m
+                TotalXpPoints = 75.0m
             },
             new Module
             {
@@ -1484,7 +1484,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 10.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -1696,7 +1696,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -1898,7 +1898,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m,
+                        XpPoints = 25.0m,
                     },
                     new Section
                     {
@@ -2108,11 +2108,11 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m
+                        XpPoints = 25.0m
                     }
                 },
                 Content = "Java is a versatile programming language known for its performance, security, and portability. It is widely used in enterprise applications, web development, mobile apps, and scientific computing.",
-                TotalXpPoints = 500.0m
+                TotalXpPoints = 100.0m
             },
             new Module
             {
@@ -2336,7 +2336,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -2538,7 +2538,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -2752,11 +2752,11 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m
+                        XpPoints = 25.0m
                     }
                 },
                 Content = "JavaScript is a versatile programming language known for its dynamic typing, functional programming features, and asynchronous programming model. It is widely used in web development, server-side applications, and mobile apps.",
-                TotalXpPoints = 500.0m
+                TotalXpPoints = 75.0m
             },
             new Module
             {
@@ -2975,7 +2975,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -3184,7 +3184,7 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m
+                        XpPoints = 25.0m
                     },
                     new Section
                     {
@@ -3391,11 +3391,11 @@ public static class DbInitializer
                                 }
                             }
                         },
-                        XpPoints = 100.0m
+                        XpPoints = 25.0m
                     }
                 },
                 Content = "C# is a versatile programming language known for its simplicity, power, and integration with the .NET framework. It is widely used in web development, desktop applications, and enterprise software.",
-                TotalXpPoints = 500.0m
+                TotalXpPoints = 75.0m
             }
         };
         
