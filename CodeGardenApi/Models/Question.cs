@@ -17,6 +17,12 @@ public class Question
     [Column(TypeName = "varchar(max)")]
     public required string CorrectAnswer { get; set; }
     
+    [Required]
+    public int ChallengeId { get; set; }
+    
     [JsonIgnore]
     public ICollection<Choice>? Choices { get; set; }
+    
+    [JsonIgnore]
+    public Challenge? Challenge { get; set; }
 }

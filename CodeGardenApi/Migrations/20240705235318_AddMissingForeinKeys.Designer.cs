@@ -4,6 +4,7 @@ using CodeGardenApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeGardenApi.Migrations
 {
     [DbContext(typeof(CodeGardenContext))]
-    partial class CodeGardenContextModelSnapshot : ModelSnapshot
+    [Migration("20240705235318_AddMissingForeinKeys")]
+    partial class AddMissingForeinKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,73 +106,6 @@ namespace CodeGardenApi.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments", "dbo");
-                });
-
-            modelBuilder.Entity("CodeGardenApi.Models.Contribution", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<int?>("ContributionId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DiscussionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContributionId");
-
-                    b.HasIndex("DiscussionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Contributions", "dbo");
-                });
-
-            modelBuilder.Entity("CodeGardenApi.Models.Discussion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Title")
-                        .IsUnique();
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Discussions", "dbo");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Module", b =>
@@ -415,40 +351,6 @@ namespace CodeGardenApi.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CodeGardenApi.Models.Contribution", b =>
-                {
-                    b.HasOne("CodeGardenApi.Models.Contribution", null)
-                        .WithMany("Contributions")
-                        .HasForeignKey("ContributionId");
-
-                    b.HasOne("CodeGardenApi.Models.Discussion", "Discussion")
-                        .WithMany("Contributions")
-                        .HasForeignKey("DiscussionId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("CodeGardenApi.Models.User", "User")
-                        .WithMany("Contributions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Discussion");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CodeGardenApi.Models.Discussion", b =>
-                {
-                    b.HasOne("CodeGardenApi.Models.User", "User")
-                        .WithMany("Discussions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("CodeGardenApi.Models.Post", b =>
                 {
                     b.HasOne("CodeGardenApi.Models.User", "User")
@@ -506,16 +408,6 @@ namespace CodeGardenApi.Migrations
                     b.Navigation("Questions");
                 });
 
-            modelBuilder.Entity("CodeGardenApi.Models.Contribution", b =>
-                {
-                    b.Navigation("Contributions");
-                });
-
-            modelBuilder.Entity("CodeGardenApi.Models.Discussion", b =>
-                {
-                    b.Navigation("Contributions");
-                });
-
             modelBuilder.Entity("CodeGardenApi.Models.Module", b =>
                 {
                     b.Navigation("Sections");
@@ -539,10 +431,6 @@ namespace CodeGardenApi.Migrations
             modelBuilder.Entity("CodeGardenApi.Models.User", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Contributions");
-
-                    b.Navigation("Discussions");
 
                     b.Navigation("Posts");
                 });
