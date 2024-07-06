@@ -37,4 +37,6 @@ public class User
 
     [JsonIgnore] public ICollection<Post>? Posts { get; set; }
     [JsonIgnore] public ICollection<Comment>? Comments { get; set; }
+    [JsonIgnore] public ICollection<Discussion>? Discussions { get; set; }
+    [JsonIgnore] public ICollection<Contribution>? Contributions { get; set; }
 }

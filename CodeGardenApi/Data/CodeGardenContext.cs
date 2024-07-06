@@ -16,6 +16,8 @@ public class CodeGardenContext(DbContextOptions<CodeGardenContext> options) : Db
     public DbSet<UserModule> UserModules { get; init; }
     public DbSet<Choice> Choices { get; init; }
     public DbSet<Question> Questions { get; init; }
+    public DbSet<Discussion> Discussions { get; init; }
+    public DbSet<Contribution> Contributions { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -89,6 +91,39 @@ public class CodeGardenContext(DbContextOptions<CodeGardenContext> options) : Db
                 .HasForeignKey(ch => ch.SectionId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
+        });
+        
+        modelBuilder.Entity<Discussion>(entity =>
+        {
+            entity.HasMany(d => d.Contributions)
+                .WithOne(c => c.Discussion)
+                .HasForeignKey(d => d.DiscussionId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            entity.HasOne(d => d.User)
+                .WithMany(u => u.Discussions)
+                .HasForeignKey(d => d.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+        });
+        
+        modelBuilder.Entity<Contribution>(entity =>
+        {
+            entity.HasOne(c => c.Discussion)
+                .WithMany(d => d.Contributions)
+                .HasForeignKey(c => c.DiscussionId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            entity.HasOne(c => c.User)
+                .WithMany(u => u.Contributions)
+                .HasForeignKey(c => c.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            entity.HasMany(c => c.Contributions);
+
         });
         base.OnModelCreating(modelBuilder);
     }
