@@ -4,6 +4,7 @@ using CodeGardenApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeGardenApi.Migrations
 {
     [DbContext(typeof(CodeGardenContext))]
-    partial class CodeGardenContextModelSnapshot : ModelSnapshot
+    [Migration("20240706024530_AddDiscussionsAndContributions")]
+    partial class AddDiscussionsAndContributions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +68,7 @@ namespace CodeGardenApi.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int?>("QuestionId")
+                    b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -254,7 +257,7 @@ namespace CodeGardenApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ChallengeId")
+                    b.Property<int>("ChallengeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -367,6 +370,10 @@ namespace CodeGardenApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ModuleId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("UserModules", "dbo");
                 });
 
@@ -383,9 +390,13 @@ namespace CodeGardenApi.Migrations
 
             modelBuilder.Entity("CodeGardenApi.Models.Choice", b =>
                 {
-                    b.HasOne("CodeGardenApi.Models.Question", null)
+                    b.HasOne("CodeGardenApi.Models.Question", "Question")
                         .WithMany("Choices")
-                        .HasForeignKey("QuestionId");
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Comment", b =>
@@ -393,7 +404,7 @@ namespace CodeGardenApi.Migrations
                     b.HasOne("CodeGardenApi.Models.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("CodeGardenApi.Models.User", "User")
@@ -454,9 +465,13 @@ namespace CodeGardenApi.Migrations
 
             modelBuilder.Entity("CodeGardenApi.Models.Question", b =>
                 {
-                    b.HasOne("CodeGardenApi.Models.Challenge", null)
+                    b.HasOne("CodeGardenApi.Models.Challenge", "Challenge")
                         .WithMany("Questions")
-                        .HasForeignKey("ChallengeId");
+                        .HasForeignKey("ChallengeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Challenge");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Section", b =>
@@ -468,6 +483,25 @@ namespace CodeGardenApi.Migrations
                         .IsRequired();
 
                     b.Navigation("Module");
+                });
+
+            modelBuilder.Entity("CodeGardenApi.Models.UserModule", b =>
+                {
+                    b.HasOne("CodeGardenApi.Models.Module", "Module")
+                        .WithMany()
+                        .HasForeignKey("ModuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CodeGardenApi.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Module");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CodeGardenApi.Models.Challenge", b =>
