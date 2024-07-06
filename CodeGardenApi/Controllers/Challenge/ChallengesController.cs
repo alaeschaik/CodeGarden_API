@@ -111,4 +111,17 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
 
         return challenge.Section;
     }
+    
+    [Authorize]
+    [HttpGet("{id:int}/questions")]
+    public async Task<ActionResult<IEnumerable<Models.Question>>> GetQuestionsForChallenge(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
+    {
+        var challenge = await context.Challenges.AsNoTracking()
+            .Include(ch => ch.Questions)
+            .FirstOrDefaultAsync(ch => ch.Id == id, cancellationToken);
+        
+        return new OkObjectResult(challenge?.Questions ?? []);
+    }
 }
