@@ -104,6 +104,25 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
 
         return NoContent();
     }
+    
+    [Authorize]
+    [HttpGet("{id:int}/user")]
+    public async Task<ActionResult<Models.User>> GetUser(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
+    {
+        var discussion = await context.Discussions.AsNoTracking()
+            .Include(d => d.User)
+            .FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
+
+        if (discussion?.User is null)
+        {
+            return NotFound();
+        }
+
+        return discussion.User;
+    }
+    
 
     [Authorize]
     [HttpPost("{id:int}/contributions")]
