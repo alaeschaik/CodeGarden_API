@@ -161,7 +161,7 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
     }
     
     [Authorize]
-    [HttpPut("{id:int}/points")]
+    [HttpPut("{id:int}/xp-points")]
     public async Task<IActionResult> UpdateXpPoints(
         [FromRoute] int id,
         [FromBody] UpdateXpPointsDto updatePointsDto,
