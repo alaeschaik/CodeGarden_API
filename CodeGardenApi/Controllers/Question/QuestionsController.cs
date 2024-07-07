@@ -107,7 +107,20 @@ public class QuestionsController(CodeGardenContext context) : ControllerBase
     }
     
     [Authorize]
-    [HttpPost("{id}/answer")]
+    [HttpPost("{id:int}/choices")]
+    public async Task<IActionResult> GetChoicesForQuestion(
+        [FromRoute] int id,
+        CancellationToken cancellationToken)
+    {
+        var question = await context.Questions.AsNoTracking()
+            .Include(q => q.Choices)
+            .FirstOrDefaultAsync(q => q.Id == id, cancellationToken);
+
+        return new OkObjectResult(question?.Choices ?? []);
+    }
+    
+    [Authorize]
+    [HttpPost("{id:int}/answer")]
     public async Task<IActionResult> SubmitAnswer(
         [FromRoute] int id,
         [FromBody] CreateQuestionDto createQuestionDto,
@@ -128,5 +141,4 @@ public class QuestionsController(CodeGardenContext context) : ControllerBase
 
         return Ok("Incorrect Answer");
     }
-    
 }
