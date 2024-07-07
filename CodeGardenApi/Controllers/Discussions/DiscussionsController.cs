@@ -39,7 +39,9 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Discussion>>> GetDiscussions(CancellationToken cancellationToken)
     {
-        return await context.Discussions.AsNoTracking().ToListAsync(cancellationToken);
+        return await context.Discussions.AsNoTracking()
+            .Include(d => d.Contributions)
+            .ToListAsync(cancellationToken);
     }
 
     [Authorize]
@@ -49,6 +51,7 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
         CancellationToken cancellationToken)
     {
         var discussion = await context.Discussions.AsNoTracking()
+            .Include(d => d.Contributions)
             .FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
 
         if (discussion is null)
@@ -104,7 +107,7 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
 
         return NoContent();
     }
-    
+
     [Authorize]
     [HttpGet("{id:int}/user")]
     public async Task<ActionResult<Models.User>> GetUser(
@@ -122,7 +125,7 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
 
         return discussion.User;
     }
-    
+
 
     [Authorize]
     [HttpPost("{id:int}/contributions")]
@@ -154,7 +157,8 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
         context.Contributions.Add(contribution);
         await context.SaveChangesAsync(cancellationToken);
 
-        return CreatedAtAction(nameof(GetContribution), new { id = discussion.Id, contributionId = contribution.Id }, contribution);
+        return CreatedAtAction(nameof(GetContribution), new { id = discussion.Id, contributionId = contribution.Id },
+            contribution);
     }
 
     [Authorize]
@@ -163,16 +167,11 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
         [FromRoute] int id,
         CancellationToken cancellationToken)
     {
-        var discussion = await context.Discussions.FindAsync([id], cancellationToken);
+        var discussion = await context.Discussions.AsNoTracking()
+            .Include(d => d.Contributions)
+            .FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
 
-        if (discussion is null)
-        {
-            return NotFound();
-        }
-
-        return await context.Contributions.AsNoTracking()
-            .Where(c => c.DiscussionId == id)
-            .ToListAsync(cancellationToken);
+        return new OkObjectResult(discussion?.Contributions ?? []);
     }
 
     [Authorize]
@@ -183,6 +182,7 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
         CancellationToken cancellationToken)
     {
         var contribution = await context.Contributions.AsNoTracking()
+            .Include(c => c.Contributions)
             .FirstOrDefaultAsync(c => c.DiscussionId == id && c.Id == contributionId, cancellationToken);
 
         if (contribution is null)
