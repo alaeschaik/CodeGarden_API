@@ -17,11 +17,13 @@ public class ContributionsController(CodeGardenContext context) : Controller
         CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(createContributionDto);
+        ArgumentNullException.ThrowIfNull(createContributionDto.DiscussionId);
         ArgumentNullException.ThrowIfNull(createContributionDto.UserId);
         ArgumentNullException.ThrowIfNull(createContributionDto.Content);
 
         var contribution = new Models.Contribution
         {
+            DiscussionId = createContributionDto.DiscussionId,
             UserId = createContributionDto.UserId,
             Content = createContributionDto.Content,
             CreatedAt = DateTime.UtcNow,
@@ -44,7 +46,7 @@ public class ContributionsController(CodeGardenContext context) : Controller
             .ThenInclude(c => c.Contributions)
             .ToListAsync(cancellationToken);
     }
-    
+
 
     [Authorize]
     [HttpGet("{id:int}")]
