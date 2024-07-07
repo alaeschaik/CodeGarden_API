@@ -107,7 +107,7 @@ public class QuestionsController(CodeGardenContext context) : ControllerBase
     }
     
     [Authorize]
-    [HttpPost("{id:int}/choices")]
+    [HttpGet("{id:int}/choices")]
     public async Task<IActionResult> GetChoicesForQuestion(
         [FromRoute] int id,
         CancellationToken cancellationToken)
