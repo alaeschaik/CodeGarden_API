@@ -32,6 +32,11 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
         {
             return BadRequest("User already exists");
         }
+        
+        if(registerUserDto.Email.Contains('@'))
+        {
+            return BadRequest("Invalid email");
+        }
 
         var user = new Models.User
         {
@@ -161,7 +166,7 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
     }
     
     [Authorize]
-    [HttpPut("{id:int}/points")]
+    [HttpPut("{id:int}/xp-points")]
     public async Task<IActionResult> UpdateXpPoints(
         [FromRoute] int id,
         [FromBody] UpdateXpPointsDto updatePointsDto,
