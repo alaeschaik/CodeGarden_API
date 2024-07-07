@@ -48,6 +48,10 @@ public sealed record UpdateUserDto(
     [property: SwaggerSchema(Nullable = true)]
     string? Lastname);
 
+public sealed record UpdateXpPointsDto(
+    [property: SwaggerSchema(Nullable = false)]
+    decimal? XpPoints);
+
 public sealed record TokenResponse(
     string Token,
     string Expiration);

@@ -159,6 +159,28 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
 
         return NoContent();
     }
+    
+    [Authorize]
+    [HttpPut("{id:int}/points")]
+    public async Task<IActionResult> UpdateXpPoints(
+        [FromRoute] int id,
+        [FromBody] UpdateXpPointsDto updatePointsDto,
+        CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(updatePointsDto);
+        ArgumentNullException.ThrowIfNull(updatePointsDto.XpPoints);
+
+        var user = await context.Users.FindAsync([id], cancellationToken);
+        if (user is null)
+        {
+            return NotFound();
+        }
+
+        user.XpPoints = updatePointsDto.XpPoints.Value;
+        await context.SaveChangesAsync(cancellationToken);
+
+        return NoContent();
+    }
 
     [Authorize]
     [HttpGet("{id:int}/posts")]
