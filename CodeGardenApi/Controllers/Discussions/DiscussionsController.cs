@@ -40,7 +40,8 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
     public async Task<ActionResult<IEnumerable<Discussion>>> GetDiscussions(CancellationToken cancellationToken)
     {
         return await context.Discussions.AsNoTracking()
-            .Include(d => d.Contributions)
+            .Include(d => d.Contributions)!
+            .ThenInclude(d => d.Contributions)
             .ToListAsync(cancellationToken);
     }
 
@@ -51,7 +52,8 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
         CancellationToken cancellationToken)
     {
         var discussion = await context.Discussions.AsNoTracking()
-            .Include(d => d.Contributions)
+            .Include(d => d.Contributions)!
+            .ThenInclude(d => d.Contributions)
             .FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
 
         if (discussion is null)
@@ -168,7 +170,8 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
         CancellationToken cancellationToken)
     {
         var discussion = await context.Discussions.AsNoTracking()
-            .Include(d => d.Contributions)
+            .Include(d => d.Contributions)!
+            .ThenInclude(c => c.Contributions)
             .FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
 
         return new OkObjectResult(discussion?.Contributions ?? []);
@@ -182,7 +185,8 @@ public class DiscussionsController(CodeGardenContext context) : ControllerBase
         CancellationToken cancellationToken)
     {
         var contribution = await context.Contributions.AsNoTracking()
-            .Include(c => c.Contributions)
+            .Include(c => c.Contributions)!
+            .ThenInclude(c => c.Contributions)
             .FirstOrDefaultAsync(c => c.DiscussionId == id && c.Id == contributionId, cancellationToken);
 
         if (contribution is null)
