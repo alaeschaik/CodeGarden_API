@@ -9,7 +9,9 @@ public sealed record CreateChallengeDto(
     [property: SwaggerSchema(Nullable = false)]
     int SectionId,
     [property: SwaggerSchema(Nullable = false)]
-    string Content);
+    string Content,
+    [property: SwaggerSchema(Nullable = false)]
+    decimal? XpPoints);
 
 public sealed record UpdateChallengeDto(
     [property: SwaggerSchema(Nullable = true)]
@@ -17,7 +19,9 @@ public sealed record UpdateChallengeDto(
     [property: SwaggerSchema(Nullable = true)]
     int? SectionId,
     [property: SwaggerSchema(Nullable = true)]
-    string? Content);
+    string? Content,
+    [property: SwaggerSchema(Nullable = false)]
+    decimal? XpPoints);
 
 public enum ChallengeTypeDto
 {

@@ -19,12 +19,14 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
         ArgumentNullException.ThrowIfNull(createChallengeDto.ChallengeType);
         ArgumentNullException.ThrowIfNull(createChallengeDto.SectionId);
         ArgumentNullException.ThrowIfNull(createChallengeDto.Content);
+        ArgumentNullException.ThrowIfNull(createChallengeDto.XpPoints);
 
         var challenge = new Models.Challenge
         {
             ChallengeType = ChallengeDtoHelper.ToChallengeTypeDto(createChallengeDto.ChallengeType),
             SectionId = (int)createChallengeDto.SectionId,
             Content = createChallengeDto.Content,
+            XpPoints = (decimal)createChallengeDto.XpPoints
         };
         context.Challenges.Add(challenge);
         await context.SaveChangesAsync(cancellationToken);
@@ -75,6 +77,7 @@ public class ChallengesController(CodeGardenContext context) : ControllerBase
         challenge.ChallengeType = updateChallengeDto.ChallengeType != null
             ? ChallengeDtoHelper.ToChallengeTypeDto(updateChallengeDto.ChallengeType)
             : challenge.ChallengeType;
+        challenge.XpPoints = updateChallengeDto.XpPoints ?? challenge.XpPoints;
 
         await context.SaveChangesAsync(cancellationToken);
 

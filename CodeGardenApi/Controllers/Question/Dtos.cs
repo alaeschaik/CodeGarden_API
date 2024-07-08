@@ -10,7 +10,9 @@ public sealed record CreateQuestionDto
     [property: SwaggerSchema(Nullable = false)]
     string? CorrectAnswer,
     [property: SwaggerSchema(Nullable = false)]
-    QuestionType? Type
+    QuestionType? Type,
+    [property: SwaggerSchema(Nullable = false)]
+    decimal? XpPoints
 );
 
 public sealed record UpdateQuestionDto
@@ -20,5 +22,7 @@ public sealed record UpdateQuestionDto
     [property: SwaggerSchema(Nullable = true)]
     string? CorrectAnswer,
     [property: SwaggerSchema(Nullable = false)]
-    QuestionType? Type
+    QuestionType? Type,
+    [property: SwaggerSchema(Nullable = false)]
+    decimal? XpPoints
 );
