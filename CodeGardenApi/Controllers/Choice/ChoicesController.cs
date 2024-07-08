@@ -43,14 +43,13 @@ public class ChoicesController(CodeGardenContext context) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Models.Choice>>> GetChoices(CancellationToken cancellationToken)
     {
-
         var choices = await context.Choices
             .AsNoTracking()
             .ToListAsync(cancellationToken);
 
         return choices;
     }
-    
+
     [Authorize]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Models.Choice>> GetChoice(
@@ -105,12 +104,12 @@ public class ChoicesController(CodeGardenContext context) : ControllerBase
 
         return NoContent();
     }
-    
+
     [Authorize]
-    [HttpPost("{id}/answer")]
+    [HttpPost("{id:int}/answer")]
     public async Task<ActionResult<bool>> AnswerChoice(
-        [FromRoute] int id, 
-        [FromBody] CreateChoiceDto createChoiceDto, 
+        [FromRoute] int id,
+        [FromBody] AnswerChoiceDto answerChoiceDto,
         CancellationToken cancellationToken)
     {
         var choice = await context.Choices.AsNoTracking()
@@ -121,6 +120,11 @@ public class ChoicesController(CodeGardenContext context) : ControllerBase
             return NotFound();
         }
 
-        return choice.IsCorrect == createChoiceDto.IsCorrect;
+        if (answerChoiceDto.Answer == choice.Content)
+        {
+            return Ok(choice.IsCorrect);
+        }
+
+        return new BadRequestResult();
     }
 }
