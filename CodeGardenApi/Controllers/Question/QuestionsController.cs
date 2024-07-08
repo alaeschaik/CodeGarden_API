@@ -19,6 +19,7 @@ public class QuestionsController(CodeGardenContext context) : ControllerBase
         ArgumentNullException.ThrowIfNull(createQuestionDto.Content);
         ArgumentNullException.ThrowIfNull(createQuestionDto.CorrectAnswer);
         ArgumentNullException.ThrowIfNull(createQuestionDto.Type);
+        ArgumentNullException.ThrowIfNull(createQuestionDto.XpPoints);
 
         var doesQuestionExist = await context.Questions.AnyAsync(
             m => m.Content == createQuestionDto.Content, cancellationToken);
@@ -32,7 +33,8 @@ public class QuestionsController(CodeGardenContext context) : ControllerBase
         {
             Content = createQuestionDto.Content,
             CorrectAnswer = createQuestionDto.CorrectAnswer,
-            Type = createQuestionDto.Type ?? throw new ArgumentNullException(nameof(createQuestionDto))
+            Type = createQuestionDto.Type ?? throw new ArgumentNullException(nameof(createQuestionDto)),
+            XpPoints = (decimal)createQuestionDto.XpPoints,
         };
 
         context.Questions.Add(question);
@@ -86,6 +88,7 @@ public class QuestionsController(CodeGardenContext context) : ControllerBase
         question.Content = updateQuestionDto.Content ?? question.Content;
         question.CorrectAnswer = updateQuestionDto.CorrectAnswer ?? question.CorrectAnswer;
         question.Type = updateQuestionDto.Type ?? question.Type;
+        question.XpPoints = updateQuestionDto.XpPoints ?? question.XpPoints;
 
         await context.SaveChangesAsync(cancellationToken);
         return NoContent();

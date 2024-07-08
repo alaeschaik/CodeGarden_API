@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Models;
 
@@ -22,6 +23,10 @@ public class Question
     
     [Required]
     public QuestionType Type { get; set; }
+    
+    [Required]
+    [Precision(20, 0)]
+    public required decimal XpPoints { get; set; }
     
     [JsonIgnore]
     public ICollection<Choice>? Choices { get; set; }

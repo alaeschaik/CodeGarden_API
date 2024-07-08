@@ -37,6 +37,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to Kotlin</h2>
                                     <p>Kotlin is a modern, statically typed programming language that runs on the Java Virtual Machine (JVM) and can also be compiled to JavaScript or native code. Developed by JetBrains, Kotlin is designed to be fully interoperable with Java, making it a popular choice for Android development and other JVM-based projects.</p>",
+                                XpPoints = 12.5m
                             },
                             new Challenge
                             {
@@ -46,6 +47,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to Kotlin Quiz</h2>
                                     <p>Test your knowledge of Kotlin with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 12.5m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -53,6 +55,7 @@ public static class DbInitializer
                                         Content = "What is Kotlin?",
                                         CorrectAnswer = "Kotlin is a modern, statically typed programming language that runs on the Java Virtual Machine (JVM) and can also be compiled to JavaScript or native code. Developed by JetBrains, Kotlin is designed to be fully interoperable with Java, making it a popular choice for Android development and other JVM-based projects.",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 12.5m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -87,6 +90,7 @@ public static class DbInitializer
                             {
                                 ChallengeType = ChallengeType.LearningContent,
                                 SectionId = 2,
+                                XpPoints = 3.125m,
                                 Content =
                                     @"
                                     <h2>Kotlin Basics</h2>
@@ -96,6 +100,7 @@ public static class DbInitializer
                             {
                                 ChallengeType = ChallengeType.LearningContent,
                                 SectionId = 2,
+                                XpPoints = 3.125m,
                                 Content = 
                                     @"
                                     <h3>Variables and Data Types</h3>
@@ -108,6 +113,7 @@ public static class DbInitializer
                             {
                                 ChallengeType = ChallengeType.LearningContent,
                                 SectionId = 2,
+                                XpPoints = 3.125m,
                                 Content = 
                                     @"
                                     <p>There are several built-in data types in Kotlin, including:</p>
@@ -122,6 +128,7 @@ public static class DbInitializer
                             {
                                 ChallengeType = ChallengeType.LearningContent,
                                 SectionId = 2,
+                                XpPoints = 3.125m,
                                 Content = 
                                     @"
                                     <h3>Basic Operators</h3>
@@ -144,6 +151,7 @@ public static class DbInitializer
                             {
                                 ChallengeType = ChallengeType.LearningContent,
                                 SectionId = 2,
+                                XpPoints = 3.125m,
                                 Content = 
                                     @"
                                     <h3>Control Flow Statements</h3>
@@ -159,6 +167,7 @@ public static class DbInitializer
                             {
                                 ChallengeType = ChallengeType.LearningContent,
                                 SectionId = 2,
+                                XpPoints = 3.125m,
                                 Content = 
                                     @"
                                     <h3>Functions and Lambdas</h3>
@@ -178,25 +187,29 @@ public static class DbInitializer
                               ChallengeType  = ChallengeType.Question,
                               SectionId = 2,
                               Content = "What is the keyword used to declare a function in Kotlin?",
+                              XpPoints = 3.125m,
                               Questions = new List<Question>
                                 {
                                     new Question
                                     {
                                         Content = "What is the keyword used to declare a function in Kotlin?",
                                         CorrectAnswer = "fun",
-                                        Type = QuestionType.Question
+                                        Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between val and var in Kotlin?",
                                         CorrectAnswer = "val is immutable, var is mutable",
-                                        Type = QuestionType.Question
+                                        Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How do you declare a lambda in Kotlin?",
                                         CorrectAnswer = "{ ... }",
-                                        Type = QuestionType.Question
+                                        Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -208,6 +221,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Kotlin Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of Kotlin with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -215,6 +229,7 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in Kotlin?",
                                         CorrectAnswer = "fun",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -239,6 +254,7 @@ public static class DbInitializer
                                         Content = "What is the difference between val and var in Kotlin?",
                                         CorrectAnswer = "val is immutable, var is mutable",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -263,6 +279,7 @@ public static class DbInitializer
                                         Content = "How do you declare a lambda in Kotlin?",
                                         CorrectAnswer = "{ ... }",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -301,6 +318,7 @@ public static class DbInitializer
                                    @"
                                    <h2>Object-Oriented Programming in Kotlin</h2>
                                    <p>This section covers the principles of object-oriented programming (OOP) in Kotlin, including classes, objects, inheritance, and polymorphism.</p>",
+                               XpPoints = 3.571m
                            }, 
                            new Challenge 
                            {
@@ -322,7 +340,8 @@ public static class DbInitializer
                                 <pre><code>val person = Person()
                                 person.name = ""Alice""
                                 person.age = 30
-                                </code></pre>", 
+                                </code></pre>",
+                              XpPoints = 3.571m
                            }, 
                            new Challenge
                            {
@@ -337,6 +356,7 @@ public static class DbInitializer
                                 }
                                 val person = Person(""Alice"", 30)
                                 </code></pre>", 
+                              XpPoints = 3.571m
                            }, 
                            new Challenge 
                            {
@@ -359,7 +379,8 @@ public static class DbInitializer
                                 }
                                 val dog = Dog()
                                 dog.speak()  // Dog barks
-                                </code></pre>", 
+                                </code></pre>",
+                              XpPoints = 3.571m
                            },
                            new Challenge 
                            {
@@ -368,32 +389,37 @@ public static class DbInitializer
                               Content =
                                 @"
                                 <h3>Polymorphism and Overriding</h3>
-                                <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>"
+                                <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>",
+                              XpPoints = 3.571m
                            }, 
                            new Challenge 
                            {
                               ChallengeType = ChallengeType.Question,
                               SectionId = 3,
                               Content = "What is the purpose of classes in Kotlin?",
+                              XpPoints = 3.571m,
                               Questions = new List<Question>
                                 {
                                     new Question
                                     {
                                         Content = "What is the purpose of classes in Kotlin?",
                                         CorrectAnswer = "To define objects with properties and methods",
-                                        Type = QuestionType.Question
+                                        Type = QuestionType.Question,
+                                        XpPoints = 1.190m
                                     },
                                     new Question
                                     {
                                         Content = "How are constructors used in Kotlin?",
                                         CorrectAnswer = "To initialize object properties",
-                                        Type = QuestionType.Question
+                                        Type = QuestionType.Question,
+                                        XpPoints = 1.190m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in Kotlin?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement",
-                                        Type = QuestionType.Question
+                                        Type = QuestionType.Question,
+                                        XpPoints = 1.190m
                                     }
                                 }
                            }, 
@@ -405,6 +431,7 @@ public static class DbInitializer
                                 @"
                                 <h2>Object-Oriented Programming in Kotlin Multiple Choice Test</h2>
                                 <p>Test your knowledge of object-oriented programming in Kotlin with this multiple-choice quiz. Good luck!</p>",
+                              XpPoints = 3.571m,
                               Questions = new List<Question>
                                 {
                                     new Question
@@ -412,6 +439,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of classes in Kotlin?",
                                         CorrectAnswer = "To define objects with properties and methods",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.190m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -436,6 +464,7 @@ public static class DbInitializer
                                         Content = "How are constructors used in Kotlin?",
                                         CorrectAnswer = "To initialize object properties",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.190m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -460,6 +489,7 @@ public static class DbInitializer
                                         Content = "What is the difference between inheritance and interfaces in Kotlin?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.190m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -499,6 +529,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced Kotlin Features</h2>
                                     <p>This section covers some of the more advanced features of Kotlin, including extension functions, data classes, sealed classes, and coroutines.</p>",
+                                XpPoints = 3.571m,
                             },
                             new Challenge
                             {
@@ -512,6 +543,7 @@ public static class DbInitializer
                                         <li>Sealed classes and smart casts</li>
                                         <li>Coroutines and asynchronous programming</li>
                                     </ul>",
+                                XpPoints = 3.571m,
                             },
                             new Challenge
                             {
@@ -526,6 +558,7 @@ public static class DbInitializer
                                     }
                                     println(""radar"".isPalindrome())  // true
                                     </code></pre>",
+                                XpPoints = 3.571m,
                             },
                             new Challenge
                             {
@@ -540,6 +573,7 @@ public static class DbInitializer
                                     val (name, age) = person
                                     println(name)  // Alice
                                     </code></pre>",
+                                XpPoints = 3.571m,
                             },
                             new Challenge
                             {
@@ -559,6 +593,7 @@ public static class DbInitializer
                                         }
                                     }
                                     </code></pre>", 
+                                XpPoints = 3.571m,
                             },
                             new Challenge
                             {
@@ -576,29 +611,34 @@ public static class DbInitializer
                                         println(""Hello,"")
                                         Thread.sleep(2000)
                                     }
-                                    </code></pre>"
+                                    </code></pre>",
+                                XpPoints = 3.571m,
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 4,
                                 Content = "Kotilin Advanced Quiz",
+                                XpPoints = 3.571m,
                                 Questions = new List<Question>
                                 {
                                     new Question
                                     {
                                         Content = "What is the purpose of extension functions in Kotlin?",
-                                        CorrectAnswer = "To add new functionality to existing classes without modifying their source code"
+                                        CorrectAnswer = "To add new functionality to existing classes without modifying their source code",
+                                        XpPoints = 1.190m,
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between a data class and a regular class in Kotlin?",
-                                        CorrectAnswer = "Data classes are used to represent immutable data, while regular classes are mutable"
+                                        CorrectAnswer = "Data classes are used to represent immutable data, while regular classes are mutable",
+                                        XpPoints = 1.190m,
                                     },
                                     new Question
                                     {
                                         Content = "How are sealed classes used in Kotlin?",
-                                        CorrectAnswer = "To represent restricted class hierarchies"
+                                        CorrectAnswer = "To represent restricted class hierarchies",
+                                        XpPoints = 1.190m,
                                     }
                                 }
                             },
@@ -610,6 +650,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced Kotlin Features Multiple Choice Test</h2>
                                     <p>Test your knowledge of the advanced features of Kotlin with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.571m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -617,6 +658,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of extension functions in Kotlin?",
                                         CorrectAnswer = "To add new functionality to existing classes",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.190m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -641,6 +683,7 @@ public static class DbInitializer
                                         Content = "What is the difference between a data class and a regular class in Kotlin?",
                                         CorrectAnswer = "Data classes are used to represent immutable data, while regular classes are mutable",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.190m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -665,6 +708,7 @@ public static class DbInitializer
                                         Content = "How are sealed classes used in Kotlin?",
                                         CorrectAnswer = "To represent restricted class hierarchies",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.190m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -714,6 +758,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to Python</h2>
                                     <p>Python is a high-level, interpreted programming language known for its simplicity and readability. In this section, you will learn the basics of Python, including its history, features, and use cases.</p>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -727,6 +772,7 @@ public static class DbInitializer
                                         <li>Key features of Python</li>
                                         <li>Comparison with other languages</li>
                                     </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -739,7 +785,8 @@ public static class DbInitializer
                                     <pre><code>name = 'Alice'  # immutable
                                     age = 30  # mutable
                                     </code></pre>
-                                    <p>There are several built-in data types in Python, including:</p>"
+                                    <p>There are several built-in data types in Python, including:</p>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -755,7 +802,8 @@ public static class DbInitializer
                                         <li>Dictionaries ({'key': 'value'})</li>
                                         <li>Tuples ((1, 2, 3))</li>
                                         <li>Sets ({1, 2, 3})</li>
-                                    </ul>"
+                                    </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -777,7 +825,8 @@ public static class DbInitializer
                                     and_op = True and False  # False
                                     or_op = True or False  # True
                                     not_op = not True  # False
-                            </code></pre>"
+                            </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -791,7 +840,8 @@ public static class DbInitializer
                                         <li><code>if</code> statement</li>
                                         <li><code>for</code> loop</li>
                                         <li><code>while</code> loop</li>
-                                    </ul>"
+                                    </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -808,29 +858,34 @@ public static class DbInitializer
                                     <p>Lambdas are anonymous functions that can be passed as arguments or stored in variables:</p>
                                     <pre><code>sum = lambda a, b: a + b
                                     print(sum(1, 2))  # 3
-                                    </code></pre>"
+                                    </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 5,
                                 Content = "Python Basics Quiz",
+                                XpPoints = 2.777m,
                                 Questions = new List<Question>
                                 {
                                     new Question
                                     {
                                         Content = "What is Python known for?",
-                                        CorrectAnswer = "Simplicity and readability"
+                                        CorrectAnswer = "Simplicity and readability",
+                                        XpPoints = 0.926m
                                     },
                                     new Question
                                     {
                                         Content = "What are some key features of Python?",
-                                        CorrectAnswer = "Interpreted, high-level, general-purpose"
+                                        CorrectAnswer = "Interpreted, high-level, general-purpose",
+                                        XpPoints = 0.926m
                                     },
                                     new Question
                                     {
                                         Content = "How does Python compare to other languages?",
-                                        CorrectAnswer = "Emphasizes code readability with significant whitespace"
+                                        CorrectAnswer = "Emphasizes code readability with significant whitespace",
+                                        XpPoints = 0.926m
                                     }
                                 }
                             },
@@ -842,6 +897,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to Python Multiple Choice Test</h2>
                                     <p>Test your knowledge of Python with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 2.777m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -849,6 +905,7 @@ public static class DbInitializer
                                         Content = "What is Python known for?",
                                         CorrectAnswer = "Simplicity and readability",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -873,6 +930,7 @@ public static class DbInitializer
                                         Content = "What are some key features of Python?",
                                         CorrectAnswer = "Interpreted, high-level, general-purpose",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -897,6 +955,7 @@ public static class DbInitializer
                                         Content = "How does Python compare to other languages?",
                                         CorrectAnswer = "Emphasizes code readability with significant whitespace",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -935,6 +994,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in Python</h2>
                                     <p>This section covers the principles of object-oriented programming (OOP) in Python, including classes, objects, inheritance, and polymorphism.</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -948,6 +1008,7 @@ public static class DbInitializer
                                         <li>Inheritance and interfaces</li>
                                         <li>Polymorphism and overriding</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -966,6 +1027,7 @@ public static class DbInitializer
                                     <p>Objects are instances of classes:</p>
                                     <pre><code>person = Person('Alice', 30)
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -981,6 +1043,7 @@ public static class DbInitializer
                                             self.age = age
                                     person = Person('Alice', 30)
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -1001,13 +1064,15 @@ public static class DbInitializer
                                     dog.speak()  # Dog barks
                                     </code></pre>
                                     <h3>Polymorphism and Overriding</h3>
-                                    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>"
+                                    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 6,
                                 Content = "Object-Oriented Programming in Python Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1015,18 +1080,21 @@ public static class DbInitializer
                                         Content = "What is the purpose of classes in Python?",
                                         CorrectAnswer = "To define objects with properties and methods",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How are constructors used in Python?",
                                         CorrectAnswer = "To initialize object properties",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in Python?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -1038,6 +1106,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in Python Multiple Choice Test</h2>
                                     <p>Test your knowledge of object-oriented programming in Python with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1045,6 +1114,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of classes in Python?",
                                         CorrectAnswer = "To define objects with properties and methods",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1069,6 +1139,7 @@ public static class DbInitializer
                                         Content = "How are constructors used in Python?",
                                         CorrectAnswer = "To initialize object properties",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1093,6 +1164,7 @@ public static class DbInitializer
                                         Content = "What is the difference between inheritance and interfaces in Python?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1119,6 +1191,7 @@ public static class DbInitializer
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 6,
                                 Content = "Object-Oriented Programming in Python Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1126,18 +1199,21 @@ public static class DbInitializer
                                         Content = "What is the purpose of classes in Python?",
                                         CorrectAnswer = "To define objects with properties and methods",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How are constructors used in Python?",
                                         CorrectAnswer = "To initialize object properties",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in Python?",
                                         CorrectAnswer = "Inheritance allows a class to inherit properties and methods from another class, while interfaces define a contract for classes to implement",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                           }
@@ -1155,42 +1231,49 @@ public static class DbInitializer
                                   ChallengeType = ChallengeType.LearningContent,
                                     SectionId = 7,
                                     Content = "<h2>Advanced Python Features</h2><p>This section covers some of the more advanced features of Python, including decorators, generators, context managers, and asynchronous programming with asyncio.</p>",
+                                    XpPoints = 3.125m
                               },
                                 new Challenge
                                 {
                                     ChallengeType = ChallengeType.LearningContent,
                                     SectionId = 7,
                                     Content = "<ul><li>Decorators and closures</li><li>Generators and iterators</li><li>Context managers and the 'with' statement</li><li>Asynchronous programming with asyncio</li></ul>",
+                                    XpPoints = 3.125m
                                 },
                                 new Challenge
                                 {
                                     ChallengeType = ChallengeType.LearningContent,
                                     SectionId = 7,
                                     Content = "<h3>Decorators and Closures</h3><p>Decorators are functions that modify the behavior of other functions:</p><pre><code>def decorator(func):def wrapper():print('Before function call')func()print('After function call')return wrapper@decoratordef greet():print('Hello, world!')greet()</code></pre>",
+                                    XpPoints = 3.125m
                                 },
                                 new Challenge
                                 {
                                     ChallengeType = ChallengeType.LearningContent,
                                     SectionId = 7,
                                     Content = "<h3>Generators and Iterators</h3><p>Generators are functions that can yield multiple values:</p><pre><code>def fibonacci():a, b = 0, 1while True:yield aa, b = b, a + bfor n in fibonacci():if n > 1000:breakprint(n)</code></pre>",
+                                    XpPoints = 3.125m
                                 },
                                 new Challenge
                                 {
                                     ChallengeType = ChallengeType.LearningContent,
                                     SectionId = 7,
                                     Content = "<h3>Context Managers and the 'with' Statement</h3><p>Context managers are used to manage resources and ensure cleanup:</p><pre><code>with open('file.txt', 'r') as file:for line in file:print(line)</code></pre>",
+                                    XpPoints = 3.125m
                                 },
                                 new Challenge
                                 {
                                     ChallengeType = ChallengeType.LearningContent,
                                     SectionId = 7,
                                     Content = "<h3>Asynchronous Programming with asyncio</h3><p>Asyncio is a library for asynchronous programming in Python:</p><pre><code>import asyncioasync def hello():await asyncio.sleep(1)print('Hello, world!')asyncio.run(hello())</code></pre>",
+                                    XpPoints = 3.125m
                                 },
                                 new Challenge
                                 {
                                     ChallengeType = ChallengeType.Question,
                                     SectionId = 7,
                                     Content = "Advanced Python Features Quiz",
+                                    XpPoints = 3.125m,
                                     Questions = new List<Question>
                                     {
                                         new Question
@@ -1198,18 +1281,21 @@ public static class DbInitializer
                                             Content = "What is the purpose of decorators in Python?",
                                             CorrectAnswer = "To modify the behavior of other functions",
                                             Type = QuestionType.Question,
+                                            XpPoints = 1.042m
                                         },
                                         new Question
                                         {
                                             Content = "What is the difference between a generator and a regular function in Python?",
                                             CorrectAnswer = "Generators can yield multiple values",
                                             Type = QuestionType.Question,
+                                            XpPoints = 1.042m
                                         },
                                         new Question
                                         {
                                             Content = "How are context managers used in Python?",
                                             CorrectAnswer = "To manage resources and ensure cleanup",
                                             Type = QuestionType.Question,
+                                            XpPoints = 1.042m
                                         }
                                     }
                                 },
@@ -1218,6 +1304,7 @@ public static class DbInitializer
                                     ChallengeType = ChallengeType.MultipleChoice,
                                     SectionId = 7,
                                     Content = "<h2>Advanced Python Features Multiple Choice Test</h2><p>Test your knowledge of the advanced features of Python with this multiple-choice quiz. Good luck!</p>",
+                                    XpPoints = 3.125m,
                                     Questions = new List<Question>
                                     {
                                         new Question
@@ -1225,6 +1312,7 @@ public static class DbInitializer
                                             Content = "What is the purpose of decorators in Python?",
                                             CorrectAnswer = "To modify the behavior of other functions",
                                             Type = QuestionType.MultipleChoice,
+                                            XpPoints = 1.042m,
                                             Choices = new List<Choice>
                                             {
                                                 new Choice
@@ -1249,6 +1337,7 @@ public static class DbInitializer
                                             Content = "What is the difference between a generator and a regular function in Python?",
                                             CorrectAnswer = "Generators can yield multiple values",
                                             Type = QuestionType.MultipleChoice,
+                                            XpPoints = 1.042m,
                                             Choices = new List<Choice>
                                             {
                                                 new Choice
@@ -1273,6 +1362,7 @@ public static class DbInitializer
                                             Content = "How are context managers used in Python?",
                                             CorrectAnswer = "To manage resources and ensure cleanup",
                                             Type = QuestionType.MultipleChoice,
+                                            XpPoints = 1.042m,
                                             Choices = new List<Choice>
                                             {
                                                 new Choice
@@ -1322,6 +1412,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to Java</h2>
                                     <p>Java is a popular programming language known for its portability, performance, and security features. In this section, you will learn the basics of Java, including its history, features, and use cases.</p>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1335,6 +1426,7 @@ public static class DbInitializer
                                         <li>Key features of Java</li>
                                         <li>Comparison with other languages</li>
                                     </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1347,7 +1439,8 @@ public static class DbInitializer
                                     <pre><code>int age = 30;  // primitive
                                     String name = ""Alice"";  // reference
                                     </code></pre>
-                                    <p>There are several built-in data types in Java, including:</p>"
+                                    <p>There are several built-in data types in Java, including:</p>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1361,6 +1454,7 @@ public static class DbInitializer
                                         <li>Characters (char)</li>
                                         <li>Strings (String)</li>
                                     </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1383,6 +1477,7 @@ public static class DbInitializer
                                     boolean or = true || false;  // true
                                     boolean not = !true;  // false
                                     </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1397,6 +1492,7 @@ public static class DbInitializer
                                         <li><code>for</code> loop</li>
                                         <li><code>while</code> loop</li>
                                     </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1411,12 +1507,14 @@ public static class DbInitializer
                                     }
                                     greet(""Alice"");  // Hello, Alice!
                                     </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 8,
                                 Content = "Java Basics Quiz",
+                                XpPoints = 2.777m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1424,18 +1522,21 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in Java?",
                                         CorrectAnswer = "void",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between primitive and reference types in Java?",
                                         CorrectAnswer = "Primitive types store values directly, while reference types store references to objects",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     },
                                     new Question
                                     {
                                         Content = "How do you declare a lambda in Java?",
                                         CorrectAnswer = "Using the lambda operator (->)",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     }
                                 }
                             },
@@ -1447,6 +1548,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Java Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of Java with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 2.777m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1454,6 +1556,7 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in Java?",
                                         CorrectAnswer = "void",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1478,6 +1581,7 @@ public static class DbInitializer
                                         Content = "What is the difference between primitive and reference types in Java?",
                                         CorrectAnswer = "Primitive types store values directly, while reference types store references to objects",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1502,6 +1606,7 @@ public static class DbInitializer
                                         Content = "How do you declare a lambda in Java?",
                                         CorrectAnswer = "Using the lambda operator (->)",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1540,6 +1645,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Java Basics</h2>
                                     <p>In this section, you will learn the basic syntax and features of Java. By the end of this section, you will be able to write simple Java programs and understand the foundational elements of the language.</p>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1553,6 +1659,7 @@ public static class DbInitializer
                                         <li>Control flow statements (if, for, while)</li>
                                         <li>Functions and lambdas</li>
                                     </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1566,6 +1673,7 @@ public static class DbInitializer
                                     String name = ""Alice"";  // reference
                                     </code></pre>
                                     <p>There are several built-in data types in Java, including:</p>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1579,6 +1687,7 @@ public static class DbInitializer
                                         <li>Characters (char)</li>
                                         <li>Strings (String)</li>
                                     </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1601,6 +1710,7 @@ public static class DbInitializer
                                     boolean or = true || false;  // true
                                     boolean not = !true;  // false
                                     </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1615,6 +1725,7 @@ public static class DbInitializer
                                         <li><code>for</code> loop</li>
                                         <li><code>while</code> loop</li>
                                     </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -1629,12 +1740,14 @@ public static class DbInitializer
                                     }
                                     greet(""Alice"");  // Hello, Alice!
                                     </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 9,
                                 Content = "Java Basics Quiz",
+                                XpPoints = 2.777m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1642,18 +1755,21 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in Java?",
                                         CorrectAnswer = "void",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between primitive and reference types in Java?",
                                         CorrectAnswer = "Primitive types store values directly, while reference types store references to objects",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     },
                                     new Question
                                     {
                                         Content = "How do you declare a lambda in Java?",
                                         CorrectAnswer = "Using the lambda operator (->)",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     }
                                 }
                             },
@@ -1665,6 +1781,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Java Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of Java with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 2.777m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1672,6 +1789,7 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in Java?",
                                         CorrectAnswer = "void",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1696,6 +1814,7 @@ public static class DbInitializer
                                         Content = "What is the difference between primitive and reference types in Java?",
                                         CorrectAnswer = "Primitive types store values directly, while reference types store references to objects",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1720,6 +1839,7 @@ public static class DbInitializer
                                         Content = "How do you declare a lambda in Java?",
                                         CorrectAnswer = "Using the lambda operator (->)",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1758,6 +1878,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in Java</h2>
                                     <p>This section covers the principles of object-oriented programming (OOP) in Java, including classes, objects, inheritance, and polymorphism.</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -1771,6 +1892,7 @@ public static class DbInitializer
                                         <li>Inheritance and interfaces</li>
                                         <li>Polymorphism and overriding</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -1793,6 +1915,7 @@ public static class DbInitializer
                                     <p>Objects are instances of classes:</p>
                                     <pre><code>Person person = new Person(""Alice"", 30);
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -1812,6 +1935,7 @@ public static class DbInitializer
                                     }
                                     Person person = new Person(""Alice"", 30);
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -1836,13 +1960,15 @@ public static class DbInitializer
                                     dog.speak();  // Dog barks  
                                     </code></pre>
                                     <h3>Polymorphism and Overriding</h3>
-                                    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>"
+                                    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>",
+                                XpPoints = 3.125m
                             },  
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 10,
                                 Content = "Object-Oriented Programming in Java Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1850,18 +1976,21 @@ public static class DbInitializer
                                         Content = "What is the purpose of constructors in Java?",
                                         CorrectAnswer = "To create new objects",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between a class and an object in Java?",
                                         CorrectAnswer = "Classes are instances of objects",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How does inheritance work in Java?",
                                         CorrectAnswer = "Java supports single class inheritance and multiple interface inheritance",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -1873,6 +2002,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in Java Multiple Choice Test</h2>
                                     <p>Test your knowledge of object-oriented programming in Java with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -1880,6 +2010,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of constructors in Java?",
                                         CorrectAnswer = "To create new objects",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1904,6 +2035,7 @@ public static class DbInitializer
                                         Content = "What is the difference between a class and an object in Java?",
                                         CorrectAnswer = "Classes are instances of objects",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1928,6 +2060,7 @@ public static class DbInitializer
                                         Content = "How does inheritance work in Java?",
                                         CorrectAnswer = "Java supports single class inheritance and multiple interface inheritance",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -1966,6 +2099,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced Java Features</h2>
                                     <p>This section covers some of the more advanced features of Java, including annotations, generics, streams, and multithreading.</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -1979,6 +2113,7 @@ public static class DbInitializer
                                         <li>Streams and lambdas</li>
                                         <li>Multithreading and concurrency</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -1999,6 +2134,7 @@ public static class DbInitializer
                                         }
                                     }
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2021,6 +2157,7 @@ public static class DbInitializer
                                     box.setValue(""Hello, world!"");
                                     String value = box.getValue();
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2035,6 +2172,7 @@ public static class DbInitializer
                                         .filter(name -> name.startsWith(""A""))
                                         .forEach(System.out::println);
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2053,12 +2191,14 @@ public static class DbInitializer
                                     HelloThread thread = new HelloThread();
                                     thread.start();
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 11,
                                 Content = "Advanced Java Features Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2066,18 +2206,21 @@ public static class DbInitializer
                                         Content = "What is the purpose of annotations in Java?",
                                         CorrectAnswer = "To provide metadata about classes, methods, and fields",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between generics and type erasure in Java?",
                                         CorrectAnswer = "Generics allow you to create type-safe collections and classes",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How are streams used in Java?",
                                         CorrectAnswer = "To process collections of data in a functional style",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -2089,6 +2232,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced Java Features Multiple Choice Test</h2>
                                     <p>Test your knowledge of the advanced features of Java with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2096,6 +2240,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of annotations in Java?",
                                         CorrectAnswer = "To provide metadata about classes, methods, and fields",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2120,6 +2265,7 @@ public static class DbInitializer
                                         Content = "What is the difference between generics and type erasure in Java?",
                                         CorrectAnswer = "Generics allow you to create type-safe collections and classes",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2144,6 +2290,7 @@ public static class DbInitializer
                                         Content = "How are streams used in Java?",
                                         CorrectAnswer = "To process collections of data in a functional style",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2193,6 +2340,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to JavaScript</h2>
                                     <p>JavaScript is a popular programming language known for its versatility and ubiquity. In this section, you will learn the basics of JavaScript, including its history, features, and use cases.</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2206,6 +2354,7 @@ public static class DbInitializer
                                         <li>Key features of JavaScript</li>
                                         <li>Comparison with other languages</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2219,6 +2368,7 @@ public static class DbInitializer
                                     const age = 30;  // immutable
                                     </code></pre>
                                     <p>There are several built-in data types in JavaScript, including:</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2233,6 +2383,7 @@ public static class DbInitializer
                                         <li>Arrays ([1, 2, 3])</li>
                                         <li>Objects ({ key: 'value' })</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2255,6 +2406,7 @@ public static class DbInitializer
                                     let or = true || false;  // true
                                     let not = !true;  // false
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2269,6 +2421,7 @@ public static class DbInitializer
                                         <li><code>for</code> loop</li>
                                         <li><code>while</code> loop</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2287,12 +2440,14 @@ public static class DbInitializer
                                     <pre><code>const sum = (a, b) => a + b;
                                     console.log(sum(1, 2));  // 3
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 12,
                                 Content = "JavaScript Basics Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2300,18 +2455,21 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in JavaScript?",
                                         CorrectAnswer = "function",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between mutable and immutable variables in JavaScript?",
                                         CorrectAnswer = "Mutable variables can be changed, immutable variables cannot",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How do you declare an arrow function in JavaScript?",
                                         CorrectAnswer = "Using the arrow (=>) syntax",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -2323,6 +2481,7 @@ public static class DbInitializer
                                     @"
                                     <h2>JavaScript Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of JavaScript with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2330,6 +2489,7 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in JavaScript?",
                                         CorrectAnswer = "function",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2354,6 +2514,7 @@ public static class DbInitializer
                                         Content = "What is the difference between mutable and immutable variables in JavaScript?",
                                         CorrectAnswer = "Mutable variables can be changed, immutable variables cannot",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2378,6 +2539,7 @@ public static class DbInitializer
                                         Content = "How do you declare an arrow function in JavaScript?",
                                         CorrectAnswer = "Using the arrow (=>) syntax",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2416,6 +2578,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in JavaScript</h2>
                                     <p>This section covers the principles of object-oriented programming (OOP) in JavaScript, including prototypes, classes, inheritance, and polymorphism.</p>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -2429,6 +2592,7 @@ public static class DbInitializer
                                         <li>Inheritance and mixins</li>
                                         <li>Polymorphism and method overriding</li>
                                     </ul>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -2447,6 +2611,7 @@ public static class DbInitializer
                                     <p>Objects are instances of constructors:</p>
                                     <pre><code>let person = new Person('Alice', 30);
                                     </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -2464,6 +2629,7 @@ public static class DbInitializer
                                     }
                                     let person = new Person('Alice', 30);
                                     </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -2486,6 +2652,7 @@ public static class DbInitializer
                                     let dog = new Dog();
                                     dog.speak();  // Dog barks
                                     </code></pre>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
@@ -2494,13 +2661,15 @@ public static class DbInitializer
                                 Content =
                                     @"
                                     <h3>Polymorphism and Method Overriding</h3>
-                                    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>"
+                                    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>",
+                                XpPoints = 2.777m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 13,
                                 Content = "Object-Oriented Programming in JavaScript Quiz",
+                                XpPoints = 2.777m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2508,18 +2677,21 @@ public static class DbInitializer
                                         Content = "What is the purpose of prototypes in JavaScript?",
                                         CorrectAnswer = "To define object behavior",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between classes and constructors in JavaScript?",
                                         CorrectAnswer = "Classes are instances of constructors",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     },
                                     new Question
                                     {
                                         Content = "How does inheritance work in JavaScript?",
                                         CorrectAnswer = "JavaScript supports prototypal inheritance and mixins",
                                         Type = QuestionType.Question,
+                                        XpPoints = 0.926m
                                     }
                                 }
                             },
@@ -2531,6 +2703,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in JavaScript Multiple Choice Test</h2>
                                     <p>Test your knowledge of object-oriented programming in JavaScript with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 2.777m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2538,6 +2711,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of prototypes in JavaScript?",
                                         CorrectAnswer = "To define object behavior",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2562,6 +2736,7 @@ public static class DbInitializer
                                         Content = "What is the difference between classes and constructors in JavaScript?",
                                         CorrectAnswer = "Classes are instances of constructors",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2586,6 +2761,7 @@ public static class DbInitializer
                                         Content = "How does inheritance work in JavaScript?",
                                         CorrectAnswer = "JavaScript supports prototypal inheritance and mixins",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 0.926m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2624,6 +2800,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced JavaScript Features</h2>
                                     <p>This section covers some of the more advanced features of JavaScript, including closures, promises, async/await, and modules.</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2637,6 +2814,7 @@ public static class DbInitializer
                                         <li>Async/await syntax for asynchronous programming</li>
                                         <li>Modules and module bundlers</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2656,6 +2834,7 @@ public static class DbInitializer
                                     console.log(counter());  // 0
                                     console.log(counter());  // 1
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2676,6 +2855,7 @@ public static class DbInitializer
                                         .then(data => console.log(data))
                                         .catch(error => console.error(error));
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2698,6 +2878,7 @@ public static class DbInitializer
                                     }
                                     main();
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2715,12 +2896,14 @@ public static class DbInitializer
                                     import { sum } from './math.js';
                                     console.log(sum(1, 2));  // 3
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 14,
                                 Content = "Advanced JavaScript Features Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2728,18 +2911,21 @@ public static class DbInitializer
                                         Content = "What is the purpose of closures in JavaScript?",
                                         CorrectAnswer = "To capture variables from their lexical environment",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How are asynchronous operations handled in JavaScript?",
                                         CorrectAnswer = "Asynchronous operations are handled with promises",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the async/await syntax used for in JavaScript?",
                                         CorrectAnswer = "To provide a more readable syntax for asynchronous programming",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -2751,6 +2937,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced JavaScript Features Multiple Choice Test</h2>
                                     <p>Test your knowledge of the advanced features of JavaScript with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2758,6 +2945,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of closures in JavaScript?",
                                         CorrectAnswer = "To capture variables from their lexical environment",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2782,6 +2970,7 @@ public static class DbInitializer
                                         Content = "How are asynchronous operations handled in JavaScript?",
                                         CorrectAnswer = "Asynchronous operations are handled with promises",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2806,6 +2995,7 @@ public static class DbInitializer
                                         Content = "What is the async/await syntax used for in JavaScript?",
                                         CorrectAnswer = "To provide a more readable syntax for asynchronous programming",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -2855,6 +3045,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Introduction to C#</h2>
                                     <p>C# is a versatile programming language known for its simplicity and power. In this section, you will learn the basics of C#, including its history, features, and use cases.</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2868,6 +3059,7 @@ public static class DbInitializer
                                         <li>Key features of C#</li>
                                         <li>Comparison with other languages</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2881,6 +3073,7 @@ public static class DbInitializer
                                     string name = 'Alice';  // reference type
                                     </code></pre>
                                     <p>There are several built-in data types in C#, including:</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2894,6 +3087,7 @@ public static class DbInitializer
                                         <li>Characters (char)</li>
                                         <li>Strings (string)</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2916,6 +3110,7 @@ public static class DbInitializer
                                     bool or = true || false;  // true
                                     bool not = !true;  // false
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2930,6 +3125,7 @@ public static class DbInitializer
                                         <li><code>for</code> loop</li>
                                         <li><code>while</code> loop</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -2944,12 +3140,14 @@ public static class DbInitializer
                                     }
                                     Greet('Alice');  // Hello, Alice!
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 15,
                                 Content = "C# Basics Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2957,18 +3155,21 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in C#?",
                                         CorrectAnswer = "void",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between value and reference types in C#?",
                                         CorrectAnswer = "Value types store their data directly, reference types store a reference to their data",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How do you declare a lambda function in C#?",
                                         CorrectAnswer = "Using the => syntax",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -2980,6 +3181,7 @@ public static class DbInitializer
                                     @"
                                     <h2>C# Basics Multiple Choice Test</h2>
                                     <p>Test your knowledge of the basic syntax and features of C# with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -2987,6 +3189,7 @@ public static class DbInitializer
                                         Content = "What is the keyword used to declare a function in C#?",
                                         CorrectAnswer = "void",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -3011,6 +3214,7 @@ public static class DbInitializer
                                         Content = "What is the difference between value and reference types in C#?",
                                         CorrectAnswer = "Value types store their data directly, reference types store a reference to their data",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -3035,6 +3239,7 @@ public static class DbInitializer
                                         Content = "How do you declare a lambda function in C#?",
                                         CorrectAnswer = "Using the => syntax",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -3073,6 +3278,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in C#</h2>
                                     <p>This section covers the principles of object-oriented programming (OOP) in C#, including classes, objects, inheritance, and polymorphism.</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3086,6 +3292,7 @@ public static class DbInitializer
                                         <li>Inheritance and interfaces</li>
                                         <li>Polymorphism and overriding</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3108,6 +3315,7 @@ public static class DbInitializer
                                     <p>Objects are instances of classes:</p>
                                     <pre><code>Person person = new Person('Alice', 30);
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3127,6 +3335,7 @@ public static class DbInitializer
                                     }
                                     Person person = new Person('Alice', 30);
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3150,6 +3359,7 @@ public static class DbInitializer
                                     Dog dog = new Dog();
                                     dog.Speak();  // Dog barks
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3158,13 +3368,15 @@ public static class DbInitializer
                                 Content =
                                     @"
                                     <h3>Polymorphism and Overriding</h3>
-                                    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>"
+                                    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 16,
                                 Content = "Object-Oriented Programming in C# Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -3172,18 +3384,21 @@ public static class DbInitializer
                                         Content = "What is the purpose of classes and objects in C#?",
                                         CorrectAnswer = "To define object behavior",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How are constructors used in C#?",
                                         CorrectAnswer = "Constructors are used to initialize object properties",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What is the difference between inheritance and interfaces in C#?",
                                         CorrectAnswer = "Inheritance allows a class to inherit from another class, interfaces define a contract",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -3195,6 +3410,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Object-Oriented Programming in C# Multiple Choice Test</h2>
                                     <p>Test your knowledge of object-oriented programming in C# with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -3202,6 +3418,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of classes and objects in C#?",
                                         CorrectAnswer = "To define object behavior",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -3226,6 +3443,7 @@ public static class DbInitializer
                                         Content = "How are constructors used in C#?",
                                         CorrectAnswer = "Constructors are used to initialize object properties",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -3250,6 +3468,7 @@ public static class DbInitializer
                                         Content = "What is the difference between inheritance and interfaces in C#?",
                                         CorrectAnswer = "Inheritance allows a class to inherit from another class, interfaces define a contract",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -3288,6 +3507,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced C# Features</h2>
                                     <p>This section covers some of the more advanced features of C#, including LINQ, async/await, delegates, and events.</p>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3301,6 +3521,7 @@ public static class DbInitializer
                                         <li>Delegates and events</li>
                                         <li>Reflection and attributes</li>
                                     </ul>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3318,6 +3539,7 @@ public static class DbInitializer
                                         Console.WriteLine(number);
                                     }
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3337,6 +3559,7 @@ public static class DbInitializer
                                     }
                                     Main().GetAwaiter().GetResult();
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3357,6 +3580,7 @@ public static class DbInitializer
                                     button.Click += (sender, e) => Console.WriteLine('Button clicked');
                                     button.OnClick();  // Button clicked
                                     </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
@@ -3371,13 +3595,15 @@ public static class DbInitializer
                                     foreach (var property in properties) {
                                         Console.WriteLine(property.Name);
                                     }
-                                    </code></pre>"
+                                    </code></pre>",
+                                XpPoints = 3.125m
                             },
                             new Challenge
                             {
                                 ChallengeType = ChallengeType.Question,
                                 SectionId = 17,
                                 Content = "Advanced C# Features Quiz",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -3385,18 +3611,21 @@ public static class DbInitializer
                                         Content = "What is the purpose of LINQ in C#?",
                                         CorrectAnswer = "To query data in a unified way",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "How are asynchronous operations handled in C#?",
                                         CorrectAnswer = "Asynchronous operations are handled with async/await",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     },
                                     new Question
                                     {
                                         Content = "What are delegates and events used for in C#?",
                                         CorrectAnswer = "Delegates and events are used to define and handle events",
                                         Type = QuestionType.Question,
+                                        XpPoints = 1.042m
                                     }
                                 }
                             },
@@ -3408,6 +3637,7 @@ public static class DbInitializer
                                     @"
                                     <h2>Advanced C# Features Multiple Choice Test</h2>
                                     <p>Test your knowledge of the advanced features of C# with this multiple-choice quiz. Good luck!</p>",
+                                XpPoints = 3.125m,
                                 Questions = new List<Question>
                                 {
                                     new Question
@@ -3415,6 +3645,7 @@ public static class DbInitializer
                                         Content = "What is the purpose of LINQ in C#?",
                                         CorrectAnswer = "To query data in a unified way",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -3439,6 +3670,7 @@ public static class DbInitializer
                                         Content = "How are asynchronous operations handled in C#?",
                                         CorrectAnswer = "Asynchronous operations are handled with async/await",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice
@@ -3463,6 +3695,7 @@ public static class DbInitializer
                                         Content = "What are delegates and events used for in C#?",
                                         CorrectAnswer = "Delegates and events are used to define and handle events",
                                         Type = QuestionType.MultipleChoice,
+                                        XpPoints = 1.042m,
                                         Choices = new List<Choice>
                                         {
                                             new Choice

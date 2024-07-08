@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeGardenApi.Models;
 
@@ -19,6 +20,10 @@ public class Challenge
     [Required]
     [Column(TypeName = "varchar(max)")]
     public required string Content { get; set; }
+    
+    [Required]
+    [Precision(20, 0)]
+    public required decimal XpPoints { get; set; }
     
     [JsonIgnore]
     public Section? Section { get; set; }

@@ -4,6 +4,7 @@ using CodeGardenApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeGardenApi.Migrations
 {
     [DbContext(typeof(CodeGardenContext))]
-    partial class CodeGardenContextModelSnapshot : ModelSnapshot
+    [Migration("20240708013444_AddXpPointsToQuestion&Challenge")]
+    partial class AddXpPointsToQuestionChallenge
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
