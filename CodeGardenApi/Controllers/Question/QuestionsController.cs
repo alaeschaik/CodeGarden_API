@@ -129,9 +129,10 @@ public class QuestionsController(CodeGardenContext context) : ControllerBase
     [HttpPost("{id:int}/answer")]
     public async Task<IActionResult> SubmitAnswer(
         [FromRoute] int id,
-        [FromBody] CreateQuestionDto createQuestionDto,
+        [FromBody] AnswerQuestionDto answerQuestionDto,
         CancellationToken cancellationToken)
     {
+        if (answerQuestionDto.Answer == null) throw new ArgumentNullException(nameof(answerQuestionDto.Answer));
 
         var question = await context.Questions.FindAsync([id], cancellationToken);
 
@@ -140,11 +141,11 @@ public class QuestionsController(CodeGardenContext context) : ControllerBase
             return NotFound();
         }
 
-        if (question.CorrectAnswer == createQuestionDto.Content)
+        if (question.CorrectAnswer == answerQuestionDto.Answer)
         {
             return Ok("Correct Answer");
         }
 
-        return Ok("Incorrect Answer");
+        return BadRequest("Incorrect Answer");
     }
 }
