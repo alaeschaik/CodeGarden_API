@@ -26,3 +26,9 @@ public sealed record UpdateQuestionDto
     [property: SwaggerSchema(Nullable = false)]
     decimal? XpPoints
 );
+
+public sealed record AnswerQuestionDto
+(
+    [property: SwaggerSchema(Nullable = false)]
+    string? Answer
+);
