@@ -159,7 +159,7 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
 
         return NoContent();
     }
-    
+
     [Authorize]
     [HttpPut("{id:int}/xp-points")]
     public async Task<IActionResult> UpdateXpPoints(
@@ -176,7 +176,7 @@ public class UsersController(CodeGardenContext context, IConfiguration configura
             return NotFound();
         }
 
-        user.XpPoints = updatePointsDto.XpPoints.Value;
+        user.XpPoints += updatePointsDto.XpPoints.Value;
         await context.SaveChangesAsync(cancellationToken);
 
         return NoContent();
