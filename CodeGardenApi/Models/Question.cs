@@ -20,6 +20,9 @@ public class Question
     [Required]
     public int ChallengeId { get; set; }
     
+    [Required]
+    public QuestionType Type { get; set; }
+    
     [JsonIgnore]
     public ICollection<Choice>? Choices { get; set; }
     
