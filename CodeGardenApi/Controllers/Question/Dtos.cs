@@ -1,3 +1,4 @@
+using CodeGardenApi.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace CodeGardenApi.Controllers.Question;
@@ -7,7 +8,9 @@ public sealed record CreateQuestionDto
     [property: SwaggerSchema(Nullable = false)]
     string? Content,
     [property: SwaggerSchema(Nullable = false)]
-    string? CorrectAnswer
+    string? CorrectAnswer,
+    [property: SwaggerSchema(Nullable = false)]
+    QuestionType? Type
 );
 
 public sealed record UpdateQuestionDto
@@ -15,5 +18,7 @@ public sealed record UpdateQuestionDto
     [property: SwaggerSchema(Nullable = true)]
     string? Content,
     [property: SwaggerSchema(Nullable = true)]
-    string? CorrectAnswer
+    string? CorrectAnswer,
+    [property: SwaggerSchema(Nullable = false)]
+    QuestionType? Type
 );
